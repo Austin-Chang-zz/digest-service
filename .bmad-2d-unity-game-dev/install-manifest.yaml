@@ -1,0 +1,136 @@
+version: 1.5.0
+installed_at: '2025-08-03T10:29:33.905Z'
+install_type: expansion-pack
+expansion_pack_id: bmad-2d-unity-game-dev
+expansion_pack_name: bmad-2d-unity-game-dev
+ides_setup:
+  - trae
+  - roo
+  - github-copilot
+files:
+  - path: .bmad-2d-unity-game-dev\config.yaml
+    hash: f7d55afd9a2ede0d
+    modified: false
+  - path: .bmad-2d-unity-game-dev\workflows\game-prototype.yaml
+    hash: e149676de12474ab
+    modified: false
+  - path: .bmad-2d-unity-game-dev\workflows\game-dev-greenfield.yaml
+    hash: c4e6844a51c25b97
+    modified: false
+  - path: .bmad-2d-unity-game-dev\utils\workflow-management.md
+    hash: f31556b5cb74e9a7
+    modified: false
+  - path: .bmad-2d-unity-game-dev\utils\bmad-doc-template.md
+    hash: a1514ec3d5729788
+    modified: false
+  - path: .bmad-2d-unity-game-dev\templates\project-brief-tmpl.yaml
+    hash: b42ac2b195090cad
+    modified: false
+  - path: .bmad-2d-unity-game-dev\templates\market-research-tmpl.yaml
+    hash: 435c7c13a11a4b1d
+    modified: false
+  - path: .bmad-2d-unity-game-dev\templates\level-design-doc-tmpl.yaml
+    hash: dab5df170e4acf90
+    modified: false
+  - path: .bmad-2d-unity-game-dev\templates\game-story-tmpl.yaml
+    hash: c874943b372f5a4d
+    modified: false
+  - path: .bmad-2d-unity-game-dev\templates\game-design-doc-tmpl.yaml
+    hash: a3ca47c3ca7df5b3
+    modified: false
+  - path: .bmad-2d-unity-game-dev\templates\game-brief-tmpl.yaml
+    hash: 123014917a3fe456
+    modified: false
+  - path: .bmad-2d-unity-game-dev\templates\game-architecture-tmpl.yaml
+    hash: 639443596403525c
+    modified: false
+  - path: .bmad-2d-unity-game-dev\templates\competitor-analysis-tmpl.yaml
+    hash: 18b4d6e944a239a3
+    modified: false
+  - path: .bmad-2d-unity-game-dev\templates\brainstorming-output-tmpl.yaml
+    hash: 32886c0bd37744f0
+    modified: false
+  - path: .bmad-2d-unity-game-dev\tasks\validate-next-story.md
+    hash: d8fa97b0f656a6dc
+    modified: false
+  - path: .bmad-2d-unity-game-dev\tasks\validate-game-story.md
+    hash: a98ec5807d6459a8
+    modified: false
+  - path: .bmad-2d-unity-game-dev\tasks\shard-doc.md
+    hash: 47fcf720d79ad8e8
+    modified: false
+  - path: .bmad-2d-unity-game-dev\tasks\kb-mode-interaction.md
+    hash: f7b445fbc6c1ce3f
+    modified: false
+  - path: .bmad-2d-unity-game-dev\tasks\game-design-brainstorming.md
+    hash: 646daf562855849e
+    modified: false
+  - path: .bmad-2d-unity-game-dev\tasks\facilitate-brainstorming-session.md
+    hash: 1a01257d51f16ff1
+    modified: false
+  - path: .bmad-2d-unity-game-dev\tasks\execute-checklist.md
+    hash: a95a0b57dbfc5c9c
+    modified: false
+  - path: .bmad-2d-unity-game-dev\tasks\document-project.md
+    hash: 8cdde592462e8d49
+    modified: false
+  - path: .bmad-2d-unity-game-dev\tasks\create-game-story.md
+    hash: ecbccf0e63110500
+    modified: false
+  - path: .bmad-2d-unity-game-dev\tasks\create-doc.md
+    hash: f14cdef8fcb6a176
+    modified: false
+  - path: .bmad-2d-unity-game-dev\tasks\create-deep-research-prompt.md
+    hash: fb739ad415044d7c
+    modified: false
+  - path: .bmad-2d-unity-game-dev\tasks\correct-course-game.md
+    hash: e71b63011be93621
+    modified: false
+  - path: .bmad-2d-unity-game-dev\tasks\advanced-elicitation.md
+    hash: 9aa22ab4e71a22e2
+    modified: false
+  - path: .bmad-2d-unity-game-dev\data\elicitation-methods.md
+    hash: 22fe263712d14ab0
+    modified: false
+  - path: .bmad-2d-unity-game-dev\data\development-guidelines.md
+    hash: 4998b97e271b35e5
+    modified: false
+  - path: .bmad-2d-unity-game-dev\data\brainstorming-techniques.md
+    hash: 949b4ce019e27694
+    modified: false
+  - path: .bmad-2d-unity-game-dev\data\bmad-kb.md
+    hash: 24b98dda9ef303a3
+    modified: false
+  - path: .bmad-2d-unity-game-dev\checklists\game-story-dod-checklist.md
+    hash: 9514623eb4afe5da
+    modified: false
+  - path: .bmad-2d-unity-game-dev\checklists\game-design-checklist.md
+    hash: 5c162f6aecf185ac
+    modified: false
+  - path: .bmad-2d-unity-game-dev\checklists\game-change-checklist.md
+    hash: cab0cb07cbf26204
+    modified: false
+  - path: .bmad-2d-unity-game-dev\checklists\game-architect-checklist.md
+    hash: 017bd255c87ec088
+    modified: false
+  - path: .bmad-2d-unity-game-dev\agents\game-sm.md
+    hash: 1ca40a327d3a6dd8
+    modified: false
+  - path: .bmad-2d-unity-game-dev\agents\game-developer.md
+    hash: d24f5061dd90e0aa
+    modified: false
+  - path: .bmad-2d-unity-game-dev\agents\game-designer.md
+    hash: 267b763fb4e872c0
+    modified: false
+  - path: .bmad-2d-unity-game-dev\agents\game-architect.md
+    hash: 405cc31242c32172
+    modified: false
+  - path: .bmad-2d-unity-game-dev\agents\bmad-orchestrator.md
+    hash: 745caf2888e932d6
+    modified: false
+  - path: .bmad-2d-unity-game-dev\agents\analyst.md
+    hash: 2c980034cd458a52
+    modified: false
+  - path: .bmad-2d-unity-game-dev\agent-teams\unity-2d-game-team.yaml
+    hash: 05a961e99c2a22bb
+    modified: false
