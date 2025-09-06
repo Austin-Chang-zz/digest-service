@@ -1,0 +1,58 @@
+# ================== STORY 1: Gamified Savings ==================
+Story:
+  Title: Gamified Savings
+  Epic: Gamification & Education
+  Description: As a child, I can see my savings progress with a fun, visual piggy bank.
+  Acceptance Criteria:
+    - Savings progress visualized as a piggy bank filling up
+    - Progress updates in real-time when money is saved
+    - Supports multiple savings jars/goals
+  Tasks:
+    - [ ] Backend: Expose savings balance per child
+    - [ ] Frontend: Build animated piggy bank visualization
+    - [ ] Frontend: Link piggy bank to actual savings data
+    - [ ] Tests: Validate correct progress calculations
+  Dev Notes:
+    - Use gamification DB for events (saves, deposits)
+    - Keep animations lightweight for mobile performance
+  QA Results: []
+
+# ================== STORY 2: Badges & Achievements ==================
+Story:
+  Title: Badges & Achievements
+  Epic: Gamification & Education
+  Description: As a teen, I can earn badges for reaching financial milestones.
+  Acceptance Criteria:
+    - Milestones defined (e.g., saving $100, completing 5 chores, reaching 30-day streak)
+    - Badges awarded automatically when milestones achieved
+    - Badges displayed in user profile
+  Tasks:
+    - [ ] Backend: Implement milestone triggers in gamification service
+    - [ ] Backend: Schema for badges (id, title, icon, description, criteria)
+    - [ ] Frontend: UI for displaying earned badges
+    - [ ] Tests: Unit tests for milestone → badge mapping
+  Dev Notes:
+    - Consider JSON rules for milestone definitions (configurable)
+    - Allow stacking badges across categories (savings, chores, literacy)
+  QA Results: []
+
+# ================== STORY 3: Financial Literacy Hub ==================
+Story:
+  Title: Financial Literacy Hub
+  Epic: Gamification & Education
+  Description: As a family, we can access interactive lessons and quizzes to learn financial literacy.
+  Acceptance Criteria:
+    - Bite-sized lessons covering saving, budgeting, spending wisely
+    - Quizzes with immediate feedback
+    - Completion progress tracked per user
+    - Parents can review child/teen progress
+  Tasks:
+    - [ ] Backend: Content management module for lessons & quizzes
+    - [ ] Backend: Track user progress and completion
+    - [ ] Frontend: UI for lesson browsing, reading, and quizzes
+    - [ ] Frontend: Progress dashboard for parents
+    - [ ] Tests: Validate lesson flow, quiz scoring, and progress tracking
+  Dev Notes:
+    - Content should be modular (easily expandable in future)
+    - Consider gamified rewards for completing lessons
+  QA Results: []

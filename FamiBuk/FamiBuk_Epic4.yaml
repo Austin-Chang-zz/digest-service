@@ -1,0 +1,58 @@
+# ================== STORY 1: Chore Assignment ==================
+Story:
+  Title: Chore Assignment
+  Epic: Allowances & Chores
+  Description: As a parent, I can assign chores to children.
+  Acceptance Criteria:
+    - Parent can create chores with title, description, due date, and reward value
+    - Children can view assigned chores in their dashboard
+    - Children can mark chores complete for parent approval
+  Tasks:
+    - [ ] Backend: Implement chore service with CRUD endpoints
+    - [ ] Backend: Schema for chores (id, familyId, assignedTo, dueDate, reward, status)
+    - [ ] Frontend: UI for creating and managing chores (parent view)
+    - [ ] Frontend: UI for viewing/marking chores complete (child view)
+    - [ ] Tests: Unit + functional tests for role validation
+  Dev Notes:
+    - Status flow: Created → In Progress → Completed (child) → Approved/Rejected (parent)
+    - Consider linking chores to allowance service
+  QA Results: []
+
+# ================== STORY 2: Allowance Automation ==================
+Story:
+  Title: Allowance Automation
+  Epic: Allowances & Chores
+  Description: As a parent, I can set up recurring allowances for kids.
+  Acceptance Criteria:
+    - Parent can define allowance amount, frequency (weekly/monthly), and recipient
+    - Allowance auto-credited on schedule
+    - Allowances visible in child/teen dashboard
+  Tasks:
+    - [ ] Backend: Extend goal/allowance service with recurring payments
+    - [ ] Backend: Add scheduler for recurring disbursements
+    - [ ] Frontend: UI for allowance setup and history
+    - [ ] Tests: Automated test cases for recurring logic
+  Dev Notes:
+    - Support two allowance types: Fixed (scheduled) and Conditional (chore completion)
+    - Parent role only for creation/management
+  QA Results: []
+
+# ================== STORY 3: Chore Completion Rewards ==================
+Story:
+  Title: Chore Completion Rewards
+  Epic: Allowances & Chores
+  Description: As a child, I receive rewards when chores are completed and approved.
+  Acceptance Criteria:
+    - Rewards (points or money) credited to child account upon approval
+    - Parent notified when child marks chore complete
+    - Parent approval required before reward is granted
+  Tasks:
+    - [ ] Backend: Link chore completion to allowance service
+    - [ ] Backend: Approval workflow for parents
+    - [ ] Frontend: Notification for parents (approval request)
+    - [ ] Frontend: Display rewards credited in child dashboard
+    - [ ] Tests: End-to-end tests for approval + reward flow
+  Dev Notes:
+    - Ensure no double-crediting if parent re-approves
+    - Consider combining with gamification (badges for chore streaks)
+  QA Results: []

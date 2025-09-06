@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GMV & Take Rate Visuals</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #fafafa;
+    }
+    h2 {
+      margin-top: 40px;
+    }
+    canvas {
+      margin-top: 20px;
+      max-width: 800px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Education & Beauty Mall: GMV and Take Rate Projections</h1>
+
+  <h2>GMV → Revenue Projection (10%, 15%, 20%)</h2>
+  <canvas id="gmvChart"></canvas>
+
+  <h2>Industry Take Rate Benchmarks</h2>
+  <canvas id="takeRateChart"></canvas>
+
+  <script>
+    // Data for GMV and Revenue Projections
+    const years = ["Y1", "Y2", "Y3"];
+    const gmv = [20, 80, 250]; // in millions
+
+    const revenue10 = gmv.map(v => v * 0.10);
+    const revenue15 = gmv.map(v => v * 0.15);
+    const revenue20 = gmv.map(v => v * 0.20);
+
+    const gmvChart = new Chart(document.getElementById('gmvChart'), {
+      type: 'line',
+      data: {
+        labels: years,
+        datasets: [
+          { label: 'GMV (Gross)', data: gmv, borderColor: 'black', backgroundColor: 'black', borderWidth: 3 },
+          { label: 'Revenue @ 10%', data: revenue10, borderColor: 'blue', borderDash: [5, 5], fill: false },
+          { label: 'Revenue @ 15%', data: revenue15, borderColor: 'green', borderDash: [5, 5], fill: false },
+          { label: 'Revenue @ 20%', data: revenue20, borderColor: 'red', borderDash: [5, 5], fill: false }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { position: 'top' } },
+        scales: { y: { title: { display: true, text: '$ Millions' } } }
+      }
+    });
+
+    // Data for Industry Take Rate Benchmarks
+    const industries = ["Education Marketplaces", "Beauty/Wellness Marketplaces"];
+    const takeRateLow = [15, 10];
+    const takeRateHigh = [25, 20];
+
+    const takeRateChart = new Chart(document.getElementById('takeRateChart'), {
+      type: 'bar',
+      data: {
+        labels: industries,
+        datasets: [
+          { label: 'Low End', data: takeRateLow, backgroundColor: 'orange' },
+          { label: 'High End', data: takeRateHigh, backgroundColor: 'teal' }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { position: 'top' } },
+        scales: { y: { beginAtZero: true, max: 30, title: { display: true, text: 'Take Rate %' } } }
+      }
+    });
+  </script>
+
+</body>
+</html>

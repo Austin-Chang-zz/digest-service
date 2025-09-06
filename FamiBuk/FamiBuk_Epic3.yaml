@@ -1,0 +1,58 @@
+# ================== STORY 1: Create Goal ==================
+Story:
+  Title: Create Goal
+  Epic: Goals & Savings
+  Description: As a parent, I can create family savings goals (e.g., vacation, education fund).
+  Acceptance Criteria:
+    - Goals include target amount, deadline, description
+    - Parent can assign contributors (Partner, Teen, Child)
+    - Goal stored and visible in family dashboard
+  Tasks:
+    - [ ] Backend: Implement goal service with CRUD endpoints
+    - [ ] Backend: Schema for goals (id, familyId, target, deadline, contributors, progress)
+    - [ ] Frontend: UI for creating and managing goals
+    - [ ] Tests: Unit + integration tests
+  Dev Notes:
+    - Goals should support multiple contributors
+    - Store contributions separately to allow tracking by member
+  QA Results: []
+
+# ================== STORY 2: Track Goal Progress ==================
+Story:
+  Title: Track Goal Progress
+  Epic: Goals & Savings
+  Description: As a user, I can view visual progress toward family savings goals.
+  Acceptance Criteria:
+    - Dashboard shows percentage completion of each goal
+    - Visual representation (progress bar or chart)
+    - Updated automatically when contributions are added
+  Tasks:
+    - [ ] Backend: Aggregate contributions for each goal
+    - [ ] Frontend: Visualization of progress (progress bar, pie chart)
+    - [ ] Frontend: Update dashboard UI
+    - [ ] Tests: Validate progress calculation
+  Dev Notes:
+    - Consider caching goal progress for dashboard performance
+    - Support multiple concurrent goals per family
+  QA Results: []
+
+# ================== STORY 3: Shared Contributions ==================
+Story:
+  Title: Shared Contributions
+  Epic: Goals & Savings
+  Description: As a family, members can contribute toward shared savings goals.
+  Acceptance Criteria:
+    - Contributions logged per user
+    - Contributions can be monetary (bank sync/manual entry) or symbolic (chores, points)
+    - Contributions update goal progress
+    - Parent can view contribution breakdown by member
+  Tasks:
+    - [ ] Backend: Extend goal service with contributions table
+    - [ ] Backend: Link contributions to expense/allowance system
+    - [ ] Frontend: UI for members to add contributions
+    - [ ] Frontend: Breakdown view by contributor
+    - [ ] Tests: Validate contribution logic
+  Dev Notes:
+    - Contributions should support flexible input (amount, date, userId)
+    - Ensure child/teen contributions require parent approval if linked to money
+  QA Results: []

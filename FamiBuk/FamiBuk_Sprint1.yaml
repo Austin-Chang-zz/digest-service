@@ -1,0 +1,53 @@
+# ================== SPRINT 1: MVP STORIES ==================
+
+- Story:
+    Title: Family Dashboard
+    Epic: Role-Based Access & Dashboard
+    Description: As a user, I can view a unified dashboard with family finances.
+    Acceptance Criteria:
+      - Dashboard shows total income, expenses, and savings
+      - Role-based personalization (different views for Parent/Partner/Child)
+    Tasks:
+      - Create dashboard UI (React/React Native)
+      - Connect with expense & goal services
+      - Implement snapshot tests for UI validation
+
+- Story:
+    Title: Expense CRUD
+    Epic: Core Expense Management
+    Description: As a parent, I can add, edit, and delete expenses with categories.
+    Acceptance Criteria:
+      - Expenses can be created with category, amount, date, and notes
+      - Expenses can be updated or deleted
+      - Expenses are persisted in the family account
+    Tasks:
+      - Implement expense service CRUD endpoints (backend)
+      - Build expense entry & listing UI
+      - Write unit tests and integration tests
+
+- Story:
+    Title: Role-Based Permissions
+    Epic: Role-Based Access & Dashboard
+    Description: As a parent, I can manage role-based access for family members.
+    Acceptance Criteria:
+      - Roles supported: Parent, Partner, Teen, Child
+      - Permissions enforced at API level
+      - UI to assign/manage roles
+    Tasks:
+      - Implement RBAC in backend (JWT + Role Claims)
+      - Build UI for role management (Parent-only)
+      - Write role-based access security tests
+
+- Story:
+    Title: Secure Login
+    Epic: Role-Based Access & Dashboard
+    Description: As a user, I can log in securely with role validation.
+    Acceptance Criteria:
+      - OAuth2 + JWT authentication
+      - Multi-device support (mobile & web)
+      - Tokens refresh automatically
+    Tasks:
+      - Implement login service with OAuth2
+      - Integrate JWT validation in backend
+      - Build login screen UI
+      - Test token expiration & refresh handling

@@ -1,0 +1,84 @@
+# ================== STORY 1: Expense CRUD ==================
+Story:
+  Title: Expense CRUD
+  Epic: Core Expense Management
+  Description: As a parent, I can add, edit, and delete expenses with categories.
+  Acceptance Criteria:
+    - Expenses can be created with category, amount, date, and notes
+    - Expenses can be updated or deleted
+    - Expenses are persisted in the family account
+    - Dashboard reflects updated expense totals
+  Tasks:
+    - [ ] Backend: Implement expense service CRUD endpoints
+    - [ ] Backend: Define expense schema (id, familyId, category, amount, date, notes)
+    - [ ] Frontend: Build UI for expense entry & listing
+    - [ ] Tests: Unit tests for service + integration tests
+    - [ ] Update dashboard to pull from expense service
+  Dev Notes:
+    - Use REST/GraphQL for API endpoints
+    - Persist in relational DB (Postgres)
+    - Ensure parent role has full access, partner shared, child/teen read-only
+  QA Results: []
+
+# ================== STORY 2: Recurring Expenses ==================
+Story:
+  Title: Recurring Expenses
+  Epic: Core Expense Management
+  Description: As a family, we can track recurring bills (rent, utilities).
+  Acceptance Criteria:
+    - Users can set recurring expense schedules
+    - System auto-generates entries on schedule
+    - Notifications sent before due date
+    - Recurring expenses visible in dashboard
+  Tasks:
+    - [ ] Backend: Extend expense service with recurrence rules (daily/weekly/monthly)
+    - [ ] Backend: Add scheduler/cron integration
+    - [ ] Frontend: UI for recurring bill management
+    - [ ] Notifications: Integrate with notification service for reminders
+    - [ ] Tests: Automated tests for recurrence logic
+  Dev Notes:
+    - Consider using Quartz Scheduler or cron jobs
+    - Parent & Partner roles can set recurrence, children read-only
+  QA Results: []
+
+# ================== STORY 3: Budget Alerts ==================
+Story:
+  Title: Budget Alerts
+  Epic: Core Expense Management
+  Description: As a parent, I receive alerts when spending exceeds set budgets.
+  Acceptance Criteria:
+    - Parent can set monthly/weekly budgets per category
+    - Alerts triggered when limit is reached
+    - Alerts delivered as push notification and dashboard warning
+  Tasks:
+    - [ ] Backend: Add budget thresholds to user settings
+    - [ ] Backend: Implement budget tracking logic
+    - [ ] Frontend: UI for setting budgets
+    - [ ] Notifications: Link alerts to notification service
+    - [ ] Tests: Validate budget breach scenarios
+  Dev Notes:
+    - Budget alerts should run in near real-time (batch + event-driven possible)
+    - Consider performance impacts for large families
+  QA Results: []
+
+# ================== STORY 4: Bank Sync ==================
+Story:
+  Title: Bank Sync
+  Epic: Core Expense Management
+  Description: As a parent, I can connect a bank account to auto-import transactions.
+  Acceptance Criteria:
+    - User can securely connect to supported bank APIs (Plaid/Finicity)
+    - Imported transactions are categorized automatically
+    - User can edit categories for imported transactions
+    - Imported expenses update dashboard totals
+  Tasks:
+    - [ ] Backend: Integrate with Plaid/Finicity APIs
+    - [ ] Backend: Securely store bank tokens (encrypted)
+    - [ ] Backend: Map transactions to expense categories
+    - [ ] Frontend: UI for bank linking and category overrides
+    - [ ] Tests: Integration tests for bank sync
+  Dev Notes:
+    - Sensitive financial data: ensure PCI DSS compliance
+    - Parent-only functionality, not available to children/teens
+    - Add retries and error handling for API failures
+  QA Results: []

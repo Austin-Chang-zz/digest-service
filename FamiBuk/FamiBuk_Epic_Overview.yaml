@@ -1,0 +1,55 @@
+# ================== EPIC 1: Core Expense Management ==================
+Epic:
+  Title: Core Expense Management
+  Goal: Enable families to track income, expenses, budgets, and bank integrations.
+  Stories:
+    - Expense CRUD
+    - Recurring Expenses
+    - Budget Alerts
+    - Bank Sync
+
+# ================== EPIC 2: Role-Based Access & Dashboard ==================
+Epic:
+  Title: Role-Based Access & Dashboard
+  Goal: Provide multi-role access with a unified family dashboard.
+  Stories:
+    - Family Dashboard
+    - Role-Based Permissions
+    - Secure Login
+
+# ================== EPIC 3: Goals & Savings ==================
+Epic:
+  Title: Goals & Savings
+  Goal: Allow families to create, track, and contribute toward shared goals.
+  Stories:
+    - Create Goal
+    - Track Goal Progress
+    - Shared Contributions
+
+# ================== EPIC 4: Allowances & Chores ==================
+Epic:
+  Title: Allowances & Chores
+  Goal: Enable parents to automate allowances and assign chores linked to rewards.
+  Stories:
+    - Chore Assignment
+    - Allowance Automation
+    - Chore Completion Rewards
+
+# ================== EPIC 5: Gamification & Education ==================
+Epic:
+  Title: Gamification & Education
+  Goal: Engage kids and teens with gamified savings and financial literacy.
+  Stories:
+    - Gamified Savings
+    - Badges & Achievements
+    - Financial Literacy Hub
+
+# ================== EPIC 6: Notifications & Security ==================
+Epic:
+  Title: Notifications & Security
+  Goal: Provide real-time notifications, parental controls, and strong security.
+  Stories:
+    - Push Notifications
+    - Unusual Spending Alerts
+    - Parental Controls
+    - Data Security & Compliance

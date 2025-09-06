@@ -1,0 +1,81 @@
+# ================== STORY 1: Push Notifications ==================
+Story:
+  Title: Push Notifications
+  Epic: Notifications & Security
+  Description: As a user, I receive notifications about bills, chores, and goals.
+  Acceptance Criteria:
+    - Users can opt-in/out of notifications
+    - Notifications delivered in real-time
+    - Supports mobile push (iOS/Android) and web notifications
+  Tasks:
+    - [ ] Backend: Implement notification service
+    - [ ] Backend: Event triggers for bills, chores, goals
+    - [ ] Frontend: UI for notification preferences
+    - [ ] Integrations: Firebase Cloud Messaging + Apple Push Notification Service
+    - [ ] Tests: Delivery validation across platforms
+  Dev Notes:
+    - Use pub/sub architecture for scalability
+    - Notifications should respect role-based visibility
+  QA Results: []
+
+# ================== STORY 2: Unusual Spending Alerts ==================
+Story:
+  Title: Unusual Spending Alerts
+  Epic: Notifications & Security
+  Description: As a parent, I receive alerts for abnormal spending patterns.
+  Acceptance Criteria:
+    - System detects spending outside normal ranges
+    - Alerts sent to parents only
+    - Parent can view details of flagged transactions
+  Tasks:
+    - [ ] Backend: Implement anomaly detection algorithm
+    - [ ] Backend: Integrate anomaly detection with expense service
+    - [ ] Notifications: Send alert via notification service
+    - [ ] Frontend: UI for reviewing flagged transactions
+    - [ ] Tests: Simulate normal vs abnormal patterns
+  Dev Notes:
+    - Start with rule-based detection (thresholds, unusual categories)
+    - Future: machine learning model for advanced detection
+  QA Results: []
+
+# ================== STORY 3: Parental Controls ==================
+Story:
+  Title: Parental Controls
+  Epic: Notifications & Security
+  Description: As a parent, I can approve or deny transactions/requests from kids.
+  Acceptance Criteria:
+    - Transactions initiated by children require parent approval
+    - Parents notified immediately upon request
+    - Approval/denial logged in system
+  Tasks:
+    - [ ] Backend: Extend role management with approval workflows
+    - [ ] Backend: API for approve/deny
+    - [ ] Frontend: Parent UI for reviewing requests
+    - [ ] Frontend: Child UI showing pending approval status
+    - [ ] Tests: Approval workflow end-to-end tests
+  Dev Notes:
+    - Approval should block transaction until parent action is taken
+    - Store audit log for compliance
+  QA Results: []
+
+# ================== STORY 4: Data Security & Compliance ==================
+Story:
+  Title: Data Security & Compliance
+  Epic: Notifications & Security
+  Description: As a family, our financial and personal data is secure and compliant with regulations.
+  Acceptance Criteria:
+    - Data encrypted at rest and in transit
+    - COPPA compliance for minors
+    - GDPR compliance for EU users
+    - Security audit logs maintained
+  Tasks:
+    - [ ] Backend: Implement database encryption (AES-256)
+    - [ ] Backend: TLS for all API endpoints
+    - [ ] Backend: Logging of security-sensitive events
+    - [ ] Compliance: Implement data retention & deletion policies
+    - [ ] Tests: Security penetration tests
+  Dev Notes:
+    - Use managed secrets vault (AWS KMS, HashiCorp Vault)
+    - Parental consent required for under-13 accounts
+    - Data minimization: only store what is necessary
+  QA Results: []

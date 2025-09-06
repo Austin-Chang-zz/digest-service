@@ -4,7 +4,7 @@
 This document analyzes the competitive landscape for KidsMate, focusing on direct and indirect competitors, feature comparison, and differentiation strategy.
 
 ## 2. Market Context
-- The global EdTech market is rapidly growing, with strong investment in K-12 adaptive learning.
+- The global EdTech market is rapidly growing, with strong investment in K-12 adaptive learning.****
 - Key industry trends: Personalization, AI-driven learning, gamification, and increased parental involvement.
 
 ## 3. Competitor List

@@ -1,0 +1,246 @@
+# ================== EPIC 1: Core Expense Management ==================
+- Story:
+    Title: Expense CRUD
+    Epic: Core Expense Management
+    Description: As a parent, I can add, edit, and delete expenses with categories.
+    Acceptance Criteria:
+      - Expenses can be created with category, amount, date, and notes
+      - Expenses can be updated or deleted
+      - Expenses are persisted in the family account
+    Tasks:
+      - Implement expense service CRUD endpoints
+      - Build UI for expense entry & listing
+      - Write unit tests
+
+- Story:
+    Title: Recurring Expenses
+    Epic: Core Expense Management
+    Description: As a family, we can track recurring bills (rent, utilities).
+    Acceptance Criteria:
+      - Users can set recurring expense schedules
+      - System auto-generates entries on schedule
+      - Notifications sent before due date
+    Tasks:
+      - Extend expense service with recurrence rules
+      - Build UI for recurring bill management
+      - Write automated tests
+
+- Story:
+    Title: Budget Alerts
+    Epic: Core Expense Management
+    Description: As a parent, I receive alerts when spending exceeds set budgets.
+    Acceptance Criteria:
+      - Parent can set monthly/weekly budgets
+      - Alerts triggered when limit reached
+    Tasks:
+      - Add budget tracking logic
+      - Notification integration
+      - Test scenarios with over-limit spending
+
+- Story:
+    Title: Bank Sync
+    Epic: Core Expense Management
+    Description: As a parent, I can connect a bank account to auto-import transactions.
+    Acceptance Criteria:
+      - User can securely connect to supported bank APIs
+      - Imported transactions categorized automatically
+    Tasks:
+      - Integrate with Plaid API
+      - Securely store tokens
+      - Map transactions to expense categories
+      - Write integration tests
+
+# ================== EPIC 2: Role-Based Access & Dashboard ==================
+- Story:
+    Title: Family Dashboard
+    Epic: Role-Based Access & Dashboard
+    Description: As a user, I can view a unified dashboard with family finances.
+    Acceptance Criteria:
+      - Dashboard shows total income, expenses, and savings
+      - Role-based personalization
+    Tasks:
+      - Create dashboard UI
+      - Connect with expense & goal services
+      - Snapshot tests
+
+- Story:
+    Title: Role-Based Permissions
+    Epic: Role-Based Access & Dashboard
+    Description: As a parent, I can manage role-based access for family members.
+    Acceptance Criteria:
+      - Roles: Parent, Partner, Teen, Child
+      - Permissions enforced at API level
+    Tasks:
+      - Implement RBAC in backend
+      - UI for role management
+      - Write security tests
+
+- Story:
+    Title: Secure Login
+    Epic: Role-Based Access & Dashboard
+    Description: As a user, I can log in securely with role validation.
+    Acceptance Criteria:
+      - OAuth2 + JWT authentication
+      - Multi-device support
+    Tasks:
+      - Implement login service
+      - Connect with identity provider
+      - Test token expiration & refresh
+
+# ================== EPIC 3: Goals & Savings ==================
+- Story:
+    Title: Create Goal
+    Epic: Goals & Savings
+    Description: As a parent, I can create family savings goals.
+    Acceptance Criteria:
+      - Goal has target amount, deadline, contributors
+    Tasks:
+      - Implement goal service
+      - UI for goal creation
+      - Write unit & integration tests
+
+- Story:
+    Title: Track Goal Progress
+    Epic: Goals & Savings
+    Description: As a user, I can view visual progress toward goals.
+    Acceptance Criteria:
+      - Progress bar or chart visualization
+    Tasks:
+      - UI visualization
+      - Link with goal service
+      - Test with sample data
+
+- Story:
+    Title: Shared Contributions
+    Epic: Goals & Savings
+    Description: As a family, members can contribute toward shared goals.
+    Acceptance Criteria:
+      - Multiple roles can add contributions
+      - Contributions logged per user
+    Tasks:
+      - Extend goal service
+      - Update dashboard
+      - Tests for multi-user contributions
+
+# ================== EPIC 4: Allowances & Chores ==================
+- Story:
+    Title: Chore Assignment
+    Epic: Allowances & Chores
+    Description: As a parent, I can assign chores to children.
+    Acceptance Criteria:
+      - Parents can create chores with due dates
+      - Children can mark chores complete
+    Tasks:
+      - Implement chore service
+      - UI for assignment & tracking
+      - Test role restrictions
+
+- Story:
+    Title: Allowance Automation
+    Epic: Allowances & Chores
+    Description: As a parent, I can set up recurring allowances.
+    Acceptance Criteria:
+      - Allowances linked to chore completion or schedule
+      - Automated transfer simulated
+    Tasks:
+      - Extend goal/allowance service
+      - UI for allowance setup
+      - Write tests
+
+- Story:
+    Title: Chore Completion Rewards
+    Epic: Allowances & Chores
+    Description: As a child, I receive rewards when chores are completed.
+    Acceptance Criteria:
+      - Rewards credited to child’s account
+      - Notifications sent
+    Tasks:
+      - Link chore service to allowance
+      - Notification service update
+      - Write functional tests
+
+# ================== EPIC 5: Gamification & Education ==================
+- Story:
+    Title: Gamified Savings
+    Epic: Gamification & Education
+    Description: As a child, I can see my savings progress with a piggy bank.
+    Acceptance Criteria:
+      - Animated piggy bank visualization
+      - Progress linked to actual savings
+    Tasks:
+      - Implement gamification module
+      - UI animations
+      - Test with sample balances
+
+- Story:
+    Title: Badges & Achievements
+    Epic: Gamification & Education
+    Description: As a teen, I can earn badges for financial milestones.
+    Acceptance Criteria:
+      - Milestones trigger badge unlocks
+      - Badges displayed in profile
+    Tasks:
+      - Extend gamification service
+      - UI for achievements
+      - Tests for milestone triggers
+
+- Story:
+    Title: Financial Literacy Hub
+    Epic: Gamification & Education
+    Description: As a family, we can access bite-sized financial lessons.
+    Acceptance Criteria:
+      - Interactive quizzes & lessons
+      - Track user completion
+    Tasks:
+      - Content management module
+      - UI for lessons
+      - Write content tests
+
+# ================== EPIC 6: Notifications & Security ==================
+- Story:
+    Title: Push Notifications
+    Epic: Notifications & Security
+    Description: As a user, I receive notifications about bills, chores, and goals.
+    Acceptance Criteria:
+      - Configurable notifications
+      - Real-time push support
+    Tasks:
+      - Implement notification service
+      - Integrate with Firebase/APNs
+      - Write delivery tests
+
+- Story:
+    Title: Unusual Spending Alerts
+    Epic: Notifications & Security
+    Description: As a parent, I receive alerts for abnormal spending.
+    Acceptance Criteria:
+      - Spending pattern detection
+      - Alerts sent in real-time
+    Tasks:
+      - Implement anomaly detection
+      - Link to notifications
+      - Write edge case tests
+
+- Story:
+    Title: Parental Controls
+    Epic: Notifications & Security
+    Description: As a parent, I can approve/deny transactions from kids.
+    Acceptance Criteria:
+      - Approval workflow built into API
+      - Notifications for approval requests
+    Tasks:
+      - Extend role management service
+      - UI for approvals
+      - Tests for child-to-parent flows
+
+- Story:
+    Title: Data Security & Compliance
+    Epic: Notifications & Security
+    Description: As a family, our data is secure and COPPA/GDPR compliant.
+    Acceptance Criteria:
+      - Encrypted storage
+      - Data minimization policies
+    Tasks:
+      - Implement encryption at rest & in transit
+      - Add compliance logging
+      - Security penetration tests

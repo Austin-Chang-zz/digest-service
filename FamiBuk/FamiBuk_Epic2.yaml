@@ -1,0 +1,66 @@
+# ================== STORY 1: Family Dashboard ==================
+Story:
+  Title: Family Dashboard
+  Epic: Role-Based Access & Dashboard
+  Description: As a user, I can view a unified dashboard with family finances.
+  Acceptance Criteria:
+    - Dashboard shows total income, expenses, and savings
+    - View updates in near real-time when new expenses or goals are added
+    - Role-based personalization (e.g., Parents see budgets, kids see savings progress)
+    - Mobile & web versions are consistent
+  Tasks:
+    - [ ] Backend: Aggregate financial data from expense, goal, allowance services
+    - [ ] Backend: API endpoint for dashboard summary
+    - [ ] Frontend: Build dashboard UI (React + React Native)
+    - [ ] Frontend: Role-based conditional rendering
+    - [ ] Tests: Snapshot tests for UI, API integration tests
+  Dev Notes:
+    - Consider GraphQL for efficient aggregation
+    - Cache frequently used dashboard queries (Redis)
+    - Support localization (multi-language)
+  QA Results: []
+
+# ================== STORY 2: Role-Based Permissions ==================
+Story:
+  Title: Role-Based Permissions
+  Epic: Role-Based Access & Dashboard
+  Description: As a parent, I can manage role-based access for family members.
+  Acceptance Criteria:
+    - Roles supported: Parent, Partner, Teen, Child
+    - Permissions enforced at API and frontend levels
+    - Parent can assign or revoke roles for family members
+    - Children/teens cannot elevate their own roles
+  Tasks:
+    - [ ] Backend: Implement RBAC (JWT claims, role table in DB)
+    - [ ] Backend: Role management API
+    - [ ] Frontend: UI for managing roles (Parent-only)
+    - [ ] Frontend: Permission-aware navigation guards
+    - [ ] Tests: Role-based access security tests (positive + negative)
+  Dev Notes:
+    - Default roles: Primary user = Parent
+    - JWT includes role claim, enforced by middleware
+    - Ensure least-privilege model is followed
+  QA Results: []
+
+# ================== STORY 3: Secure Login ==================
+Story:
+  Title: Secure Login
+  Epic: Role-Based Access & Dashboard
+  Description: As a user, I can log in securely with role validation.
+  Acceptance Criteria:
+    - OAuth2 + JWT authentication
+    - Multi-device support (web & mobile)
+    - Refresh tokens securely issued & rotated
+    - Failed logins logged for security auditing
+  Tasks:
+    - [ ] Backend: Implement login service with OAuth2 provider
+    - [ ] Backend: JWT issuance + refresh token handling
+    - [ ] Backend: Audit log for authentication attempts
+    - [ ] Frontend: Login screen UI
+    - [ ] Frontend: Handle token expiration & refresh
+    - [ ] Tests: Authentication flow tests
+  Dev Notes:
+    - Consider Firebase Auth, Auth0, or custom OAuth2 server
+    - Store refresh tokens securely (HttpOnly cookies for web, secure storage for mobile)
+    - Parents should be flagged as account owners
+  QA Results: []
