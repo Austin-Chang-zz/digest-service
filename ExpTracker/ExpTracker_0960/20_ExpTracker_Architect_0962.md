@@ -1,6 +1,5 @@
 I'll merge the two architecture documents and update them to align with the latest PRD v0.96.0 requirements. Here's the comprehensive merged architecture document:
 
-```markdown
 # Family Expense Tracker – System Architecture Document (v0.96.2)
 
 ## Introduction
