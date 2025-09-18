@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Bank App</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #212529;
+            color: white;
+        }
+
+        .bg-custom-dark {
+            background-color: #2d343a;
+        }
+
+        .bg-custom-teal {
+            background-color: #48a9a6;
+        }
+
+        .text-custom-teal-light {
+            color: #80cbc4;
+        }
+
+        .border-custom-teal {
+            border-color: #48a9a6;
+        }
+    </style>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+
+<body class="bg-custom-dark">
+    <div class="container mx-auto p-4">
+        <header class="flex justify-between items-center mb-4">
+            <div class="flex items-center space-x-2">
+                <button
+                    class="bg-yellow-500 text-black rounded-full h-10 w-10 flex items-center justify-center font-bold text-lg">93</button>
+                <button class="bg-gray-700 rounded-full h-10 w-10 flex items-center justify-center">
+                    <span class="material-icons">help_outline</span>
+                </button>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span class="material-icons">signal_cellular_alt</span>
+                <span class="material-icons">wifi</span>
+                <div class="flex items-center">
+                    <span class="material-icons">battery_full</span>
+                    <span class="text-sm">74%</span>
+                </div>
+            </div>
+        </header>
+        <div class="relative mb-6">
+            <div class="bg-custom-teal rounded-2xl p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-lg font-medium">Total Assets 👀</h2>
+                    <button class="border border-white rounded-full px-4 py-1 text-sm">Details</button>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <p class="text-sm text-gray-200">New Taiwan Dollar Savings (Account Balance)</p>
+                        <p class="text-2xl font-bold mt-1">$35,056 &gt;</p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-200">Foreign Currency Savings (Approx. NTD)</p>
+                        <p class="text-2xl font-bold mt-1">$60,735 &gt;</p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-200">Investment</p>
+                        <p class="text-lg font-semibold mt-1">Start Investing</p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-200">Loan</p>
+                        <p class="text-lg font-semibold mt-1">From 2.1% &gt;</p>
+                    </div>
+                </div>
+            </div>
+            <img alt="A cartoon dog with a scarf" class="absolute -top-10 right-10 h-20 w-auto"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAj-tw8wreolicqMSLITtp_t1VvHfXEA1oWPIbhMTvjaa_YaoCY8-MjHdmKmfpUP8Rr12Y7OpBtCFigtn3lVhr1U1F4Y4GQfyoQwW4G-2zu6DieSW7uJ3uK4ST6viawEemQ_cPIxVGRqRW1P_mBwkHstKvtwleThRGCcrlzD63GzfX4XUAViNgbiWxOO7dcBoAjinJDZwYF3arvQLt600wfbXGiTocULhJ7kXYm9TeEsEd2nTqH0WIW7EZRYvr6HOepxU1eI1jew_M" />
+        </div>
+        <div class="bg-gray-700 rounded-lg p-3 flex justify-between items-center mb-6">
+            <div class="flex items-center">
+                <span class="material-icons text-custom-teal-light mr-3">sell</span>
+                <p>Open a securities account and get a USD 4.5 exchange voucher</p>
+            </div>
+            <span class="material-icons text-gray-400">chevron_right</span>
+        </div>
+        <div class="flex justify-between items-center mb-4">
+            <h3 class="text-xl font-bold">My Financial Tools</h3>
+            <button class="text-blue-400">Edit</button>
+        </div>
+        <div class="grid grid-cols-2 gap-4 mb-8">
+            <div class="bg-gray-800 p-4 rounded-2xl">
+                <div class="flex items-center mb-2">
+                    <span class="material-icons mr-2 text-custom-teal-light">account_balance_wallet</span>
+                    <p class="font-semibold">Preferential Account</p>
+                </div>
+                <p class="text-sm text-gray-400">Total accumulated (Interest 1.8%)</p>
+                <p class="text-2xl font-bold my-2">NT$30,839</p>
+                <p class="text-sm text-gray-400">Accumulated interest approx. $49</p>
+            </div>
+            <div class="bg-gray-800 p-4 rounded-2xl">
+                <div class="flex items-center mb-2">
+                    <span class="material-icons mr-2 text-custom-teal-light">credit_card</span>
+                    <p class="font-semibold">Credit Card</p>
+                </div>
+                <p class="text-sm text-gray-400">Current Consumption</p>
+                <p class="text-2xl font-bold my-2">$8,036</p>
+                <p class="text-sm text-gray-400">Statement date: 07th of every month</p>
+            </div>
+            <div class="bg-gray-800 p-4 rounded-2xl">
+                <div class="flex items-center mb-2">
+                    <img alt="USA Flag" class="w-6 h-4 mr-2"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCamAEDWRh0g8iAXNtt9CvYCcYWQ9BMtu5bsWqzItmB_sI_yGhznUecOI5b_pBW1KJHkEAIWggGgnQL8dzI1L_C5_3sIZj-qYg3r_kMsnbHmduX0AQaRvsK9DDrkj9R6SxIM5sctfi6v27QR-gm_ferCnWfJBuVTKL9zbykniqPR2R2mFHaBaX4R3-6T0mk2TaGcyVHTsMhJUMMwOB4bhHHT_zYD3e_WNcbsdJlUEKDMJLyxK3tvPOQpuTwSAxkij5j-ZKWMaYThJ0" />
+                    <p class="font-semibold">USD</p>
+                </div>
+                <p class="text-sm text-gray-400">Richart Preferential Rate</p>
+            </div>
+            <div class="bg-gray-800 p-4 rounded-2xl">
+                <div class="flex items-center mb-2">
+                    <span class="material-icons mr-2 text-custom-teal-light">calendar_today</span>
+                    <p class="font-semibold">September Account Rebate</p>
+                </div>
+                <div class="flex justify-around mt-4">
+                    <div class="text-center">
+                        <p class="text-sm text-gray-400">Free Cross-bank Transfer</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-sm text-gray-400">Free Cross-bank Withdrawal</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="fixed bottom-0 left-0 right-0 bg-gray-800 text-gray-400">
+        <div class="flex justify-around py-2">
+            <a class="text-center text-custom-teal-light" href="#">
+                <span class="material-icons">home</span>
+                <p class="text-xs">Home</p>
+            </a>
+            <a class="text-center" href="#">
+                <span class="material-icons">analytics</span>
+                <p class="text-xs">Overview</p>
+            </a>
+            <a class="text-center" href="#">
+                <span class="material-icons">payments</span>
+                <p class="text-xs">Payment</p>
+            </a>
+            <a class="text-center" href="#">
+                <span class="material-icons">explore</span>
+                <p class="text-xs">Explore</p>
+            </a>
+            <a class="text-center" href="#">
+                <span class="material-icons">person</span>
+                <p class="text-xs">My</p>
+            </a>
+        </div>
+    </footer>
+
+</body>
+
+</html>
