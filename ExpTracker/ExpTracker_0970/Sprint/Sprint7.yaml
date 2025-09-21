@@ -1,0 +1,133 @@
+
+
+# **Scope:**
+
+# * **Epic 6: Gamification & Education** (3 stories)
+# * **Epic 7: Notifications & Controls** (3 stories)
+
+---
+
+## `sprint-07.yaml`
+
+stories:
+  - id: "6.1"
+    epic: "Epic 6: Gamification & Education"
+    title: "Badge & Achievement System"
+    description: >
+      As a user, I want to earn badges for milestones,
+      so that I feel rewarded for good financial habits.
+    priority: Medium
+    business_value: >
+      Encourages engagement and makes finance tracking fun.
+    acceptance_criteria:
+      - Badge awarded when goals or milestones achieved
+      - Badge visible on user profile
+      - System supports multiple badge types
+    technical_notes:
+      frontend: "BadgeUI.tsx"
+      backend: "Gamification Service"
+      db: "badges, user_badges tables"
+    references:
+      - "PRD v0.97.3 Epic 6.1"
+
+  - id: "6.2"
+    epic: "Epic 6: Gamification & Education"
+    title: "Financial Literacy Challenges"
+    description: >
+      As a user, I want challenges or quizzes,
+      so that I can improve my financial literacy while using the app.
+    priority: Medium
+    business_value: >
+      Differentiates app by providing education alongside tracking.
+    acceptance_criteria:
+      - Challenge/quiz modules available
+      - Progress tracked per user
+      - Rewards linked to successful completion
+    technical_notes:
+      frontend: "QuizUI.tsx"
+      backend: "Gamification API"
+      db: "challenges, user_progress tables"
+    references:
+      - "PRD v0.97.3 Epic 6.2"
+
+  - id: "6.3"
+    epic: "Epic 6: Gamification & Education"
+    title: "Leaderboard"
+    description: >
+      As a family, we want a leaderboard showing contributions and achievements,
+      so that we stay motivated and accountable together.
+    priority: Low
+    business_value: >
+      Promotes healthy competition and shared motivation.
+    acceptance_criteria:
+      - Leaderboard shows family member rankings
+      - Rankings based on completed goals, chores, and savings
+    technical_notes:
+      frontend: "LeaderboardPage.tsx"
+      backend: "Gamification Service leaderboard API"
+    references:
+      - "PRD v0.97.3 Epic 6.3"
+
+  - id: "7.1"
+    epic: "Epic 7: Notifications & Controls"
+    title: "Push & Email Notifications"
+    description: >
+      As a user, I want to receive push and email notifications,
+      so that I stay updated about important events.
+    priority: High
+    business_value: >
+      Improves usability and keeps users engaged with the app.
+    acceptance_criteria:
+      - Notifications for expenses, allowances, goals, subscriptions
+      - Supports push (mobile) and email
+      - Configurable per user
+    technical_notes:
+      backend: "Notification Service"
+      frontend: "NotificationCenter.tsx"
+      db: "notifications table"
+    references:
+      - "PRD v0.97.3 Epic 7.1"
+
+  - id: "7.2"
+    epic: "Epic 7: Notifications & Controls"
+    title: "Per-user Notification Preferences"
+    description: >
+      As a user, I want to configure my notification preferences,
+      so that I only receive relevant alerts.
+    priority: High
+    business_value: >
+      Reduces notification fatigue and increases satisfaction.
+    acceptance_criteria:
+      - Settings screen with notification toggles
+      - Preferences saved per user
+      - Changes take effect immediately
+    technical_notes:
+      frontend: "NotificationPreferences.tsx"
+      backend: "User Prefs Service"
+      db: "user_notification_prefs table"
+    references:
+      - "PRD v0.97.3 Epic 7.2"
+
+  - id: "7.3"
+    epic: "Epic 7: Notifications & Controls"
+    title: "Critical Alerts"
+    description: >
+      As a user, I want critical alerts to always break through,
+      so that I don’t miss urgent events like payment failures.
+    priority: High
+    business_value: >
+      Ensures users never miss critical financial events.
+    acceptance_criteria:
+      - Critical alerts bypass preferences
+      - Special styling in UI (red highlight)
+      - Supports push + email
+    technical_notes:
+      backend: "Critical Notification Service"
+      frontend: "CriticalAlertUI.tsx"
+    references:
+      - "PRD v0.97.3 Epic 7.3"
+
+
+
+
+

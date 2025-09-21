@@ -1,0 +1,168 @@
+
+# **Scope:**
+
+# * **Epic 10: Feedback & Customer Support** (3 stories)
+# * **Epic 18: Messaging/Chat System** (5 stories)
+
+---
+
+## `sprint-08.yaml`
+
+stories:
+  - id: "10.1"
+    epic: "Epic 10: Feedback & Customer Support"
+    title: "Feedback Form"
+    description: >
+      As a user, I want to submit feedback through a form,
+      so that I can share my thoughts and report issues easily.
+    priority: Medium
+    business_value: >
+      Provides valuable user insights for continuous improvement.
+    acceptance_criteria:
+      - Feedback form accessible from settings/help menu
+      - Supports text input and screenshot upload
+      - Feedback stored in system for admin review
+    technical_notes:
+      frontend: "FeedbackForm.tsx"
+      backend: "Feedback API"
+      db: "feedback table"
+    references:
+      - "PRD v0.97.3 Epic 10.1"
+
+  - id: "10.2"
+    epic: "Epic 10: Feedback & Customer Support"
+    title: "Support Chat"
+    description: >
+      As a user, I want real-time support chat,
+      so that I can get help quickly when I face problems.
+    priority: High
+    business_value: >
+      Improves customer satisfaction and reduces churn.
+    acceptance_criteria:
+      - Support chat available from Help Center
+      - Supports real-time messaging with support staff or bot
+      - Logs stored for reference
+    technical_notes:
+      backend: "Support Bot + Live Agent System"
+      frontend: "SupportChatWindow.tsx"
+      db: "support_chat_messages table"
+    references:
+      - "PRD v0.97.3 Epic 10.2"
+
+  - id: "10.3"
+    epic: "Epic 10: Feedback & Customer Support"
+    title: "FAQ & Help Center"
+    description: >
+      As a user, I want access to FAQs and guides,
+      so that I can solve common issues without contacting support.
+    priority: Medium
+    business_value: >
+      Reduces support load and empowers self-service.
+    acceptance_criteria:
+      - FAQ/help center available from app menu
+      - Searchable content with categories
+      - Supports text + image guides
+    technical_notes:
+      frontend: "HelpCenterPage.tsx"
+      backend: "Static Content Service"
+    references:
+      - "PRD v0.97.3 Epic 10.3"
+
+  - id: "18.1"
+    epic: "Epic 18: Messaging/Chat System"
+    title: "Family Group Chat"
+    description: >
+      As a family member, I want a group chat,
+      so that we can communicate within the app.
+    priority: High
+    business_value: >
+      Strengthens family engagement and increases app stickiness.
+    acceptance_criteria:
+      - Group chat available for each family
+      - Messages persisted across devices
+      - Supports text and emoji
+    technical_notes:
+      frontend: "ChatWindow.tsx"
+      backend: "Chat Service (WebSocket)"
+      db: "chat_messages table"
+    references:
+      - "PRD v0.97.3 Epic 18.1"
+
+  - id: "18.2"
+    epic: "Epic 18: Messaging/Chat System"
+    title: "Direct Text Messaging"
+    description: >
+      As a user, I want to send private messages to family members,
+      so that I can communicate one-to-one.
+    priority: Medium
+    business_value: >
+      Extends communication beyond group chat.
+    acceptance_criteria:
+      - Direct chat threads per user pair
+      - Same features as group chat (text + emoji)
+    technical_notes:
+      backend: "Direct Message API"
+      frontend: "DirectChat.tsx"
+    references:
+      - "PRD v0.97.3 Epic 18.2"
+
+  - id: "18.3"
+    epic: "Epic 18: Messaging/Chat System"
+    title: "Voice Messaging"
+    description: >
+      As a user, I want to send short voice messages,
+      so that I can communicate more easily.
+    priority: Medium
+    business_value: >
+      Increases usability and accessibility for non-typers.
+    acceptance_criteria:
+      - Record and send short audio clips
+      - Playback in chat window
+    technical_notes:
+      backend: "Voice Message API"
+      frontend: "VoiceRecorder.tsx"
+      storage: "File Storage Service (S3)"
+    references:
+      - "PRD v0.97.3 Epic 18.3"
+
+  - id: "18.4"
+    epic: "Epic 18: Messaging/Chat System"
+    title: "Attachments"
+    description: >
+      As a user, I want to send attachments (images, files),
+      so that I can share useful information in chat.
+    priority: Medium
+    business_value: >
+      Makes chat more functional and relevant for families.
+    acceptance_criteria:
+      - Support for image/file upload
+      - Files visible inline with previews
+      - Secure storage of uploaded files
+    technical_notes:
+      backend: "File Upload API"
+      frontend: "AttachmentUploader.tsx"
+      storage: "Cloud Storage (S3/GCS)"
+    references:
+      - "PRD v0.97.3 Epic 18.4"
+
+  - id: "18.5"
+    epic: "Epic 18: Messaging/Chat System"
+    title: "Read Receipts"
+    description: >
+      As a user, I want to see read receipts,
+      so that I know if my message has been seen.
+    priority: Low
+    business_value: >
+      Enhances communication clarity and user expectations.
+    acceptance_criteria:
+      - Sender sees when message is delivered and read
+      - Receiver’s read status stored
+    technical_notes:
+      db: "message_read_status table"
+      backend: "Chat API updates"
+      frontend: "ReadReceiptIndicator.tsx"
+    references:
+      - "PRD v0.97.3 Epic 18.5"
+
+
+

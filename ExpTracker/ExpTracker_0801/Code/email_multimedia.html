@@ -1,0 +1,303 @@
+
+<!-- QR Sharing via Email, Download, WhatsApp, Telegram -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account - Family Expense Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: #fff;
+            padding: 2rem;
+            margin-top: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 650px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin: 0.5rem 0 0.3rem;
+        }
+
+        input,
+        button {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .transparent-input::placeholder {
+            color: rgba(0, 0, 0, 0.3);
+        }
+
+        .social-login {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-login button {
+            flex: 1;
+            background: #f0f0f0;
+            border: none;
+            cursor: pointer;
+            padding: 0.8rem;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .add-member {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .add-member button {
+            font-size: 1.5rem;
+            border: none;
+            background: #4CAF50;
+            color: #fff;
+            padding: 0.4rem 0.8rem;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .members-list {
+            margin-top: 1rem;
+        }
+
+        .checkbox {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .submit-btn {
+            background: #007BFF;
+            color: #fff;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .qr-section {
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        #qrcode {
+            margin: 1rem auto;
+        }
+
+        #qrcode img {
+            border: 1px solid #ccc;
+            padding: 0.5rem;
+            background: #fff;
+            border-radius: 8px;
+        }
+
+        video {
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .action-buttons button {
+            flex: 1;
+            max-width: 220px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Create Account</h1>
+
+        <!-- Group Setup -->
+        <label for="groupName">Group / Team Name</label>
+        <input type="text" id="groupName" placeholder="Enter team name">
+
+        <label for="owner">Host / Owner / Manager</label>
+        <input type="text" id="owner" class="transparent-input" placeholder="First name and last name">
+
+        <label for="persona">Persona</label>
+        <input type="text" id="persona" class="transparent-input" placeholder="Persona">
+
+        <!-- Add more members -->
+        <div class="add-member">
+            <button type="button">+</button>
+            <p>Add another member</p>
+        </div>
+
+        <!-- Social Login Options -->
+        <div class="social-login">
+            <button>Google</button>
+            <button>Facebook</button>
+            <button>X</button>
+            <button>Email</button>
+        </div>
+
+        <!-- Certification Code -->
+        <label for="code">Verification Code (6 digits)</label>
+        <input type="text" id="code" maxlength="6" placeholder="Enter 6-digit code">
+
+        <!-- Members List -->
+        <div class="members-list">
+            <h3>Current Members</h3>
+            <ul id="members">
+                <li>John Doe (Parent)</li>
+                <li>Jane Doe (Partner)</li>
+            </ul>
+            <div class="checkbox">
+                <input type="checkbox" id="allJoined">
+                <label for="allJoined">All expected members joined</label>
+            </div>
+        </div>
+
+        <!-- QR Code Section -->
+        <div class="qr-section">
+            <h3>Invite Members</h3>
+            <button onclick="generateQRCode()">Generate QR Code</button>
+            <div id="qrcode"></div>
+
+            <div class="action-buttons">
+                <button id="emailInviteBtn" style="display:none;">📧 Email Invite</button>
+                <button id="downloadQRBtn" style="display:none;">⬇️ Download QR Code</button>
+                <button id="whatsappShareBtn" style="display:none; background:#25D366; color:#fff;">💬 Share via
+                    WhatsApp</button>
+                <button id="telegramShareBtn" style="display:none; background:#0088cc; color:#fff;">📨 Share via
+                    Telegram</button>
+            </div>
+
+            <h3>Join by Scanning QR</h3>
+            <button onclick="startScan()">Start QR Scan</button>
+            <video id="preview"></video>
+        </div>
+
+        <button class="submit-btn">Create Account</button>
+    </div>
+
+    <!-- QR Code Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <!-- QR Scanner Library -->
+    <script src="https://unpkg.com/qr-scanner/qr-scanner.umd.min.js"></script>
+
+    <script>
+        let lastQRData = "";
+
+        // Generate QR Code with group info
+        function generateQRCode() {
+            const groupName = document.getElementById("groupName").value || "MyTeam";
+            const owner = document.getElementById("owner").value || "Owner";
+            const persona = document.getElementById("persona").value || "Member";
+
+            const groupData = JSON.stringify({ group: groupName, owner: owner, newMember: persona });
+            lastQRData = groupData;
+
+            document.getElementById("qrcode").innerHTML = ""; // Clear old QR
+            const qr = new QRCode(document.getElementById("qrcode"), {
+                text: groupData,
+                width: 200,
+                height: 200
+            });
+
+            // Show action buttons
+            document.getElementById("emailInviteBtn").style.display = "inline-block";
+            document.getElementById("downloadQRBtn").style.display = "inline-block";
+            document.getElementById("whatsappShareBtn").style.display = "inline-block";
+            document.getElementById("telegramShareBtn").style.display = "inline-block";
+
+            // Setup email invite
+            document.getElementById("emailInviteBtn").onclick = function () {
+                const subject = encodeURIComponent("Join our Family Expense Tracker Group");
+                const body = encodeURIComponent(`Hi,\n\nPlease join our group "${groupName}" hosted by ${owner}.\n\nYou can scan the attached QR code or use this data:\n${groupData}`);
+                window.location.href = `mailto:?subject=${subject}&body=${body}`;
+            };
+
+            // Setup download QR button
+            setTimeout(() => {
+                const qrImg = document.querySelector("#qrcode img") || document.querySelector("#qrcode canvas");
+                document.getElementById("downloadQRBtn").onclick = function () {
+                    const link = document.createElement("a");
+                    link.href = qrImg.src || qrImg.toDataURL("image/png");
+                    link.download = `${groupName}_invite_qr.png`;
+                    link.click();
+                };
+            }, 500);
+
+            // WhatsApp share
+            document.getElementById("whatsappShareBtn").onclick = function () {
+                const text = encodeURIComponent(`Join our Family Expense Tracker group "${groupName}" hosted by ${owner}.\nQR Data: ${groupData}`);
+                window.open(`https://wa.me/?text=${text}`, "_blank");
+            };
+
+            // Telegram share
+            document.getElementById("telegramShareBtn").onclick = function () {
+                const text = encodeURIComponent(`Join our Family Expense Tracker group "${groupName}" hosted by ${owner}.\nQR Data: ${groupData}`);
+                window.open(`https://t.me/share/url?url=&text=${text}`, "_blank");
+            };
+        }
+
+        // Start QR Code Scanner
+        function startScan() {
+            const videoElem = document.getElementById("preview");
+            const qrScanner = new QrScanner(videoElem, result => {
+                try {
+                    const parsed = JSON.parse(result);
+
+                    // Auto-fill group and owner fields
+                    if (parsed.group) document.getElementById("groupName").value = parsed.group;
+                    if (parsed.owner) document.getElementById("owner").value = parsed.owner;
+
+                    // Add new member dynamically
+                    if (parsed.newMember) {
+                        const membersList = document.getElementById("members");
+                        const li = document.createElement("li");
+                        li.textContent = parsed.newMember + " (Joined via QR)";
+                        membersList.appendChild(li);
+                    }
+
+                    alert("Joined Group: " + parsed.group + " | Owner: " + parsed.owner);
+                } catch (e) {
+                    alert("QR Code Scanned: " + result);
+                }
+                qrScanner.stop();
+            });
+            qrScanner.start();
+        }
+    </script>
+</body>
+
+</html>

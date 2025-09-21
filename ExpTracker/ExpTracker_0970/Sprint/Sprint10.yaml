@@ -1,0 +1,90 @@
+
+# **Scope:**
+
+# * **Epic 12: Multi-Currency & Exchange Management** (4 stories)
+
+---
+
+## `sprint-10.yaml`
+
+stories:
+  - id: "12.1"
+    epic: "Epic 12: Multi-Currency & Exchange Management"
+    title: "Multi-Currency Transactions"
+    description: >
+      As a user, I want to record transactions in multiple currencies,
+      so that I can manage international family expenses.
+    priority: High
+    business_value: >
+      Enables adoption by globally distributed families with cross-currency needs.
+    acceptance_criteria:
+      - Expense/income forms include currency selector
+      - Transaction stored with original currency
+      - Balance calculations reflect selected base currency
+    technical_notes:
+      frontend: "CurrencySelector.tsx"
+      backend: "Transaction API with currency support"
+      db: "transactions table with currency_code"
+    references:
+      - "PRD v0.97.3 Epic 12.1"
+
+  - id: "12.2"
+    epic: "Epic 12: Multi-Currency & Exchange Management"
+    title: "Exchange Rate Integration"
+    description: >
+      As a user, I want exchange rates automatically applied,
+      so that I can see balances in a consistent currency.
+    priority: High
+    business_value: >
+      Simplifies financial tracking across currencies.
+    acceptance_criteria:
+      - Daily exchange rates fetched from API
+      - Conversion applied in balance displays
+      - User can refresh rates manually
+    technical_notes:
+      backend: "Integration with FX APIs (e.g., OpenExchangeRates)"
+      db: "exchange_rates table"
+    references:
+      - "PRD v0.97.3 Epic 12.2"
+
+  - id: "12.3"
+    epic: "Epic 12: Multi-Currency & Exchange Management"
+    title: "Currency Formatting"
+    description: >
+      As a user, I want proper formatting of currencies,
+      so that amounts display correctly in my locale.
+    priority: Medium
+    business_value: >
+      Improves readability and reduces user errors.
+    acceptance_criteria:
+      - Amounts displayed with correct symbols and decimal formatting
+      - Localization applied to currency display
+    technical_notes:
+      frontend: "Intl.js formatting"
+      backend: "Formatting middleware"
+    references:
+      - "PRD v0.97.3 Epic 12.3"
+
+  - id: "12.4"
+    epic: "Epic 12: Multi-Currency & Exchange Management"
+    title: "User Currency Preferences"
+    description: >
+      As a user, I want to set a preferred display currency,
+      so that balances and reports are shown consistently.
+    priority: High
+    business_value: >
+      Enhances usability for global families by providing consistency.
+    acceptance_criteria:
+      - Preferred currency configurable in settings
+      - All reports/balances shown in preferred currency
+      - Conversion applied automatically from stored currency
+    technical_notes:
+      frontend: "CurrencyPreferenceSettings.tsx"
+      backend: "User Preferences Service"
+      db: "user_preferences.display_currency"
+    references:
+      - "PRD v0.97.3 Epic 12.4"
+
+
+
+

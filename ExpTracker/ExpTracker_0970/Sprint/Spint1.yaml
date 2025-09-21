@@ -1,0 +1,361 @@
+
+
+# 📂 Sprint 1 – Story Draft Files
+
+# **Scope:** Epic 0 (Onboarding), Epic 1 (Authentication & Security), Epic 2 (Group Management & Invites)
+
+# ✅ Sprint 1 Summary
+
+# * **Epic 0: Onboarding** → 6 story files
+# * **Epic 1: Authentication & Security** → 4 story files
+# * **Epic 2: Group Management & Invites** → 4 story files
+#   📦 **Total Sprint 1 = 14 YAML story draft files**
+
+## `sprint-01/story-0.1-account-creation.yaml`
+
+id: "0.1"
+epic: "Epic 0: Account Creation & Onboarding"
+title: "Account Creation Page"
+description: >
+  As a new family user, I want to create an account with my name, role, and group setup,
+  so that I can start managing my family’s finances.
+priority: High
+business_value: >
+  Smooth onboarding ensures first-time users engage successfully and set up their family group in under 3 minutes.
+acceptance_criteria:
+  - Users can enter name, role (Parent, Partner, Teen, Child), and group name
+  - Setup completes in <3 minutes with 95% success on mobile
+  - Responsive across mobile, tablet, desktop
+  - Multi-language labels supported (EN, ZH-TW, ZH-CN, JA, ES)
+technical_notes:
+  frontend: "Next.js AccountCreationForm.tsx"
+  backend: "NestJS Auth Service + Family Mgmt Service"
+  db: "users table with name, role, group_id"
+  integration: "Creates family group on signup"
+references:
+  - "PRD v0.97.3 Epic 0.1"
+  - "UX Onboarding Flow"
+  - "Architecture Auth + Family Mgmt"
+
+
+## `sprint-01/story-0.2-host-owner.yaml`
+
+id: "0.2"
+epic: "Epic 0: Account Creation & Onboarding"
+title: "Host/Owner Definition"
+description: >
+  As the group creator, I want to be automatically assigned as the group owner/admin
+  so that I can manage members, funds, and settings.
+priority: High
+business_value: >
+  Ensures clear ownership and administrative control at group creation.
+acceptance_criteria:
+  - Group creator automatically set as Manager/Owner
+  - Owner permissions include member mgmt, fund/wallet mgmt, settings
+  - Non-owners restricted from these controls
+technical_notes:
+  backend: "Family Mgmt Service, group_owner field"
+  db: "family_groups.owner_id"
+  frontend: "UI badge for Owner role"
+references:
+  - "PRD v0.97.3 Epic 0.2"
+  - "UX Persona Roles"
+
+
+## `sprint-01/story-0.3-add-members-placeholder.yaml`
+
+
+id: "0.3"
+epic: "Epic 0: Account Creation & Onboarding"
+title: "Add Members Placeholder"
+description: >
+  As a group owner, I want to see a visible '+ Add Member' placeholder during onboarding
+  so that I know where to invite family members in the future.
+priority: Medium
+business_value: >
+  Sets user expectations for group member invitations, even if feature is deferred.
+acceptance_criteria:
+  - '+ Add Member' button visible on onboarding screen
+  - Opens placeholder modal (stub only, no backend integration)
+  - Placeholder explains invitation will come later
+technical_notes:
+  frontend: "React AddMemberButton.tsx"
+  backend: "None in v0.97.3 (stub only)"
+references:
+  - "PRD v0.97.3 Epic 0.3"
+  - "UX Onboarding Flow"
+
+
+## `sprint-01/story-0.4-current-member-display.yaml`
+
+id: "0.4"
+epic: "Epic 0: Account Creation & Onboarding"
+title: "Current Member Display"
+description: >
+  As a group owner, I want to see a list of members who have joined,
+  so that I can confirm group setup completion.
+priority: Medium
+business_value: >
+  Provides immediate visual confirmation that onboarding and invitations are working.
+acceptance_criteria:
+  - Onboarding shows list of joined members
+  - 'All joined' confirmation when setup is complete
+technical_notes:
+  frontend: "MemberList.tsx"
+  backend: "Family Mgmt API /family/members"
+  db: "users linked to family_groups"
+references:
+  - "PRD v0.97.3 Epic 0.4"
+  - "Architecture Family Mgmt Service"
+
+
+## `sprint-01/story-0.5-multi-language-labels.yaml`
+
+id: "0.5"
+epic: "Epic 0: Account Creation & Onboarding"
+title: "Multi-language Onboarding Labels"
+description: >
+  As a multilingual user, I want onboarding labels localized so that I can complete setup in my preferred language.
+priority: High
+business_value: >
+  Expands accessibility and adoption across regions and personas.
+acceptance_criteria:
+  - All onboarding text localized (EN, ZH-TW, ZH-CN, JA, ES)
+  - Auto-detect browser locale with manual switch option
+  - RTL/LTR support included for future languages
+technical_notes:
+  frontend: "next-i18next integration"
+  backend: "Multi-Language Service"
+  files: "locales/{lang}/onboarding.json"
+references:
+  - "PRD v0.97.3 Epic 0.5"
+  - "UX Accessibility Goals"
+  - "Architecture Multi-language Service"
+
+
+
+## `sprint-01/story-0.6-rwd-onboarding.yaml`
+
+id: "0.6"
+epic: "Epic 0: Account Creation & Onboarding"
+title: "Responsive Onboarding Page"
+description: >
+  As a mobile-first user, I want the onboarding page to adapt to different screen sizes,
+  so that I can complete setup on any device.
+priority: High
+business_value: >
+  Ensures MVP usability target of 95% success rate on mobile onboarding.
+acceptance_criteria:
+  - Responsive across mobile, tablet, desktop
+  - Touch-friendly UI on mobile
+  - Layout adapts to orientation changes
+technical_notes:
+  frontend: "Tailwind responsive utilities (sm:, md:, lg:)"
+  testing: "Cross-device testing (iOS, Android, Desktop)"
+references:
+  - "PRD v0.97.3 Epic 0.6"
+  - "UX Mobile-first Strategy"
+
+
+---
+
+# 📂 Sprint 1 – Full Story Drafts (Epics 0 + 1 + 2)
+
+# Now adding **Epic 1 (Auth, 4 stories)** + **Epic 2 (Group Mgmt, 4 stories)**.
+
+
+## `sprint-01/story-1.1-signup-login.yaml`
+
+id: "1.1"
+epic: "Epic 1: Authentication & Security"
+title: "Signup & Login Flow"
+description: >
+  As a user, I want to sign up and log in securely,
+  so that I can access my family’s expense tracker.
+priority: High
+business_value: >
+  Critical entry point for MVP; no functionality possible without authentication.
+acceptance_criteria:
+  - Signup requires name, email, password, role
+  - Login requires email + password
+  - Error messages for invalid input
+  - Session maintained for authenticated users
+technical_notes:
+  frontend: "Next.js LoginForm.tsx, SignupForm.tsx"
+  backend: "NestJS Auth Service with JWT"
+  db: "users table with hashed passwords"
+references:
+  - "PRD v0.97.3 Epic 1.1"
+  - "Architecture Auth Service"
+
+
+## `sprint-01/story-1.2-password-reset.yaml`
+
+id: "1.2"
+epic: "Epic 1: Authentication & Security"
+title: "Password Reset & Recovery"
+description: >
+  As a user, I want to reset my password if I forget it,
+  so that I can regain access to my account.
+priority: High
+business_value: >
+  Essential recovery feature; prevents account lockout and support overhead.
+acceptance_criteria:
+  - "Forgot password?" link visible on login
+  - User receives password reset email
+  - Token-based reset link valid for limited time
+  - User can set a new password successfully
+technical_notes:
+  backend: "Password reset endpoint with token"
+  frontend: "ResetPasswordForm.tsx"
+  db: "password_reset_tokens table"
+references:
+  - "PRD v0.97.3 Epic 1.2"
+  - "UX Recovery Flow"
+
+
+## `sprint-01/story-1.3-mfa.yaml`
+
+id: "1.3"
+epic: "Epic 1: Authentication & Security"
+title: "Multi-Factor Authentication (MFA)"
+description: >
+  As a security-conscious user, I want MFA options
+  so that my account is protected beyond just a password.
+priority: Medium
+business_value: >
+  Increases trust and security for sensitive financial data.
+acceptance_criteria:
+  - User can enable MFA (e.g., SMS or Authenticator app)
+  - MFA required on new device login
+  - Option to disable MFA if desired
+technical_notes:
+  backend: "MFA provider integration (e.g., Twilio/Authy)"
+  frontend: "MFA Setup Modal"
+  db: "user_mfa_settings table"
+references:
+  - "PRD v0.97.3 Epic 1.3"
+  - "Architecture Auth Service"
+
+
+## `sprint-01/story-1.4-session-management.yaml`
+
+id: "1.4"
+epic: "Epic 1: Authentication & Security"
+title: "Session Management"
+description: >
+  As a user, I want to view and manage active sessions
+  so that I can revoke access from devices I no longer use.
+priority: Medium
+business_value: >
+  Enhances user trust and security; reduces risk of account takeover.
+acceptance_criteria:
+  - User can view list of active sessions (device, location, timestamp)
+  - User can revoke individual sessions
+  - Session auto-expiration after inactivity
+technical_notes:
+  backend: "Redis-backed session store"
+  frontend: "ActiveSessionsList.tsx"
+  db: "sessions table linked to users"
+references:
+  - "PRD v0.97.3 Epic 1.4"
+  - "Architecture Session Management"
+
+
+## `sprint-01/story-2.1-group-dashboard.yaml`
+
+id: "2.1"
+epic: "Epic 2: Group Management & Invites"
+title: "Group Summary Dashboard"
+description: >
+  As a group owner, I want a dashboard that summarizes family group status,
+  so that I can quickly understand group composition and activity.
+priority: High
+business_value: >
+  Provides visibility into group setup, membership, and activity in one place.
+acceptance_criteria:
+  - Dashboard shows group name, members, and roles
+  - Shows fund/wallet summary if set up
+  - Owner badge visible for group creator
+technical_notes:
+  frontend: "GroupDashboard.tsx"
+  backend: "Family Mgmt Service"
+references:
+  - "PRD v0.97.3 Epic 2.1"
+  - "UX Group Dashboard"
+
+
+## `sprint-01/story-2.2-role-based-permissions.yaml`
+
+id: "2.2"
+epic: "Epic 2: Group Management & Invites"
+title: "Role-Based Permissions View"
+description: >
+  As a group owner, I want to assign and review roles,
+  so that I can manage permissions across family members.
+priority: High
+business_value: >
+  Enforces proper access control; ensures sensitive features are restricted.
+acceptance_criteria:
+  - Roles: Owner, Parent, Partner, Teen, Child
+  - UI shows role assigned to each member
+  - Non-owners cannot reassign roles
+technical_notes:
+  frontend: "RolePermissionsUI.tsx"
+  backend: "RBAC logic in Family Mgmt Service"
+  db: "user_roles table"
+references:
+  - "PRD v0.97.3 Epic 2.2"
+  - "UX Persona Roles"
+
+
+## `sprint-01/story-2.3-family-progress.yaml`
+
+id: "2.3"
+epic: "Epic 2: Group Management & Invites"
+title: "Family Progress Indicators"
+description: >
+  As a parent, I want visual progress indicators
+  so that I can track family financial goals and activity.
+priority: Medium
+business_value: >
+  Motivates engagement and helps families track progress together.
+acceptance_criteria:
+  - Progress bars visible on group dashboard
+  - Linked to shared goals (Epic 4 dependency)
+  - Updates automatically with expenses and savings
+technical_notes:
+  frontend: "ProgressIndicators.tsx"
+  backend: "Goal Service integration"
+references:
+  - "PRD v0.97.3 Epic 2.3"
+  - "Architecture Goal Service"
+
+
+## `sprint-01/story-2.4-qr-invite.yaml`
+
+id: "2.4"
+epic: "Epic 2: Group Management & Invites"
+title: "QR Code Invite"
+description: >
+  As a group owner, I want to invite members via QR code,
+  so that they can quickly join my family group without manual entry.
+priority: High
+business_value: >
+  Reduces onboarding friction; easy way to add family members.
+acceptance_criteria:
+  - Owner can generate a group QR code
+  - QR code contains secure invite link
+  - Members scanning QR join directly to group
+technical_notes:
+  backend: "Invite Service generates tokenized URL"
+  frontend: "QRCodeGenerator.tsx"
+  db: "invites table with expiry"
+references:
+  - "PRD v0.97.3 Epic 2.4"
+  - "UX Invite Flow"
+
+
+
+
+

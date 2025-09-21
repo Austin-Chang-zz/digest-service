@@ -1,0 +1,208 @@
+# ✅ Sprint 3 Summary
+
+# * **Epic 3: Core Expense Management** → 5 stories
+# * **Epic 17: Categorization** → 5 stories
+#  📦 **Total Sprint 3 = 10 stories in one YAML file (`sprint-03.yaml`)**
+
+## `sprint-03.yaml`
+
+
+stories:
+  - id: "3.1"
+    epic: "Epic 3: Core Expense Management"
+    title: "Add & Edit Expense"
+    description: >
+      As a user, I want to add and edit expense entries,
+      so that I can track family spending accurately.
+    priority: High
+    business_value: >
+      Core financial feature; enables families to manage expenses.
+    acceptance_criteria:
+      - Add new expense with category, amount, date, payer
+      - Edit existing expense
+      - Expense updates reflected immediately in balance
+    technical_notes:
+      frontend: "ExpenseForm.tsx"
+      backend: "Expense API (NestJS)"
+      db: "expenses table"
+    references:
+      - "PRD v0.97.3 Epic 3.1"
+      - "UX Expense Flow"
+
+  - id: "3.2"
+    epic: "Epic 3: Core Expense Management"
+    title: "Add & Edit Income"
+    description: >
+      As a user, I want to add and edit income records,
+      so that I can track family earnings alongside expenses.
+    priority: High
+    business_value: >
+      Allows balanced financial tracking of both inflows and outflows.
+    acceptance_criteria:
+      - Add new income entry with source, amount, date
+      - Edit income records
+      - Included in group wallet balance
+    technical_notes:
+      frontend: "IncomeForm.tsx"
+      backend: "Income API (shared with Expense API)"
+      db: "incomes table"
+    references:
+      - "PRD v0.97.3 Epic 3.2"
+
+  - id: "3.3"
+    epic: "Epic 3: Core Expense Management"
+    title: "Hybrid Bank Sync"
+    description: >
+      As a user, I want to sync my bank account with the system,
+      so that expenses are automatically imported and categorized.
+    priority: High
+    business_value: >
+      Reduces manual entry and improves accuracy of records.
+    acceptance_criteria:
+      - Connect to bank account via Plaid/Tink
+      - Import transactions into expense log
+      - User can review/edit imported transactions
+    technical_notes:
+      backend: "Plaid/Tink integration service"
+      frontend: "BankSyncSetup.tsx"
+      db: "transactions table with sync_source"
+    references:
+      - "PRD v0.97.3 Epic 3.3"
+
+  - id: "3.4"
+    epic: "Epic 3: Core Expense Management"
+    title: "Expense Search & Filters"
+    description: >
+      As a user, I want to search and filter expenses,
+      so that I can quickly find relevant transactions.
+    priority: Medium
+    business_value: >
+      Improves usability for large data sets; key for analysis.
+    acceptance_criteria:
+      - Search by text (merchant, category)
+      - Filter by date range, category, payer
+      - Combined filters supported
+    technical_notes:
+      frontend: "FilterBar.tsx"
+      backend: "Search API with indexed queries"
+    references:
+      - "PRD v0.97.3 Epic 3.4"
+
+  - id: "3.5"
+    epic: "Epic 3: Core Expense Management"
+    title: "Expense Notifications"
+    description: >
+      As a user, I want notifications when major expenses are recorded,
+      so that I stay informed about significant family spending.
+    priority: Medium
+    business_value: >
+      Keeps members aware of important transactions.
+    acceptance_criteria:
+      - Notification sent when expense > configurable threshold
+      - Owner can configure thresholds in settings
+      - Notifications delivered via in-app + push
+    technical_notes:
+      backend: "Notification Service"
+      frontend: "ExpenseNotification.tsx"
+    references:
+      - "PRD v0.97.3 Epic 3.5"
+
+  - id: "17.1"
+    epic: "Epic 17: Categorization"
+    title: "Custom Categories"
+    description: >
+      As a user, I want to create custom categories,
+      so that I can organize expenses in ways that fit my family.
+    priority: High
+    business_value: >
+      Enhances flexibility of expense management; aligns with family needs.
+    acceptance_criteria:
+      - Create new category with name, icon, color
+      - Category available across group
+      - Editable by owner/admin
+    technical_notes:
+      frontend: "CategoryModal.tsx"
+      backend: "Category API"
+      db: "categories table"
+    references:
+      - "PRD v0.97.3 Epic 17.1"
+
+  - id: "17.2"
+    epic: "Epic 17: Categorization"
+    title: "Multi-Level Categories"
+    description: >
+      As a user, I want categories to support sub-categories,
+      so that I can better structure my expenses.
+    priority: Medium
+    business_value: >
+      Provides deeper insights into spending distribution.
+    acceptance_criteria:
+      - Categories can contain sub-categories
+      - Parent-child hierarchy visible in UI
+      - Roll-up calculations for parent categories
+    technical_notes:
+      db: "categories table with parent_id"
+      frontend: "NestedCategoryPicker.tsx"
+    references:
+      - "PRD v0.97.3 Epic 17.2"
+
+  - id: "17.3"
+    epic: "Epic 17: Categorization"
+    title: "Icons & Colors"
+    description: >
+      As a user, I want categories to have unique icons and colors,
+      so that expenses are visually distinguishable.
+    priority: Low
+    business_value: >
+      Improves user experience and quick scanning of expense types.
+    acceptance_criteria:
+      - Category creation supports icon + color selection
+      - Default set of icons/colors provided
+    technical_notes:
+      frontend: "IconPicker.tsx, ColorPicker.tsx"
+      assets: "Static icon/color library"
+    references:
+      - "PRD v0.97.3 Epic 17.3"
+
+  - id: "17.4"
+    epic: "Epic 17: Categorization"
+    title: "Merge Categories"
+    description: >
+      As a group owner, I want to merge duplicate categories,
+      so that expense data stays clean and consistent.
+    priority: Medium
+    business_value: >
+      Reduces clutter and ensures consistency across family group.
+    acceptance_criteria:
+      - Merge UI allows selection of source + target category
+      - All transactions re-assigned to target category
+    technical_notes:
+      backend: "Category merge endpoint"
+      db: "transaction.category_id update"
+    references:
+      - "PRD v0.97.3 Epic 17.4"
+
+  - id: "17.5"
+    epic: "Epic 17: Categorization"
+    title: "Global vs Personal Categories"
+    description: >
+      As a user, I want categories to be either global or personal,
+      so that I can separate my own tags from family-wide ones.
+    priority: Medium
+    business_value: >
+      Balances individual flexibility with family-wide structure.
+    acceptance_criteria:
+      - Toggle category scope (global/personal)
+      - Personal categories only visible to creator
+    technical_notes:
+      db: "categories.scope field"
+      frontend: "CategoryScopeToggle.tsx"
+    references:
+      - "PRD v0.97.3 Epic 17.5"
+
+
+
+
+
+
+

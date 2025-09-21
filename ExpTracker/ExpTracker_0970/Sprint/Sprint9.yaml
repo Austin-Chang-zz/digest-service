@@ -1,0 +1,91 @@
+
+# **Scope:**
+
+# * **Epic 11: Calendar & Scheduling** (4 stories)
+
+---
+
+## `sprint-09.yaml`
+
+stories:
+  - id: "11.1"
+    epic: "Epic 11: Calendar & Scheduling"
+    title: "Bill Reminders"
+    description: >
+      As a user, I want to set bill reminders,
+      so that I don’t miss important payments.
+    priority: High
+    business_value: >
+      Reduces late fees and increases financial reliability for families.
+    acceptance_criteria:
+      - User can create bill reminder with due date and amount
+      - Reminder visible in calendar
+      - Notification sent before due date
+    technical_notes:
+      frontend: "BillReminderForm.tsx"
+      backend: "Calendar Service"
+      db: "reminders table"
+    references:
+      - "PRD v0.97.3 Epic 11.1"
+
+  - id: "11.2"
+    epic: "Epic 11: Calendar & Scheduling"
+    title: "Family Shared Calendar"
+    description: >
+      As a family, we want a shared calendar,
+      so that we can coordinate financial events together.
+    priority: High
+    business_value: >
+      Provides shared visibility and helps with family planning.
+    acceptance_criteria:
+      - Calendar view visible to all family members
+      - Shows reminders, events, and recurring bills
+      - Permissions aligned with roles
+    technical_notes:
+      frontend: "FamilyCalendar.tsx"
+      backend: "Calendar API"
+      db: "events table"
+    references:
+      - "PRD v0.97.3 Epic 11.2"
+
+  - id: "11.3"
+    epic: "Epic 11: Calendar & Scheduling"
+    title: "External Calendar Sync"
+    description: >
+      As a user, I want to sync events with external calendars (Google, Apple),
+      so that I can manage everything in one place.
+    priority: Medium
+    business_value: >
+      Increases adoption by integrating with tools families already use.
+    acceptance_criteria:
+      - Support Google and Apple calendar sync
+      - One-way sync from app → external
+      - User can enable/disable sync
+    technical_notes:
+      backend: "Google/Apple Calendar APIs"
+      frontend: "CalendarSyncSettings.tsx"
+    references:
+      - "PRD v0.97.3 Epic 11.3"
+
+  - id: "11.4"
+    epic: "Epic 11: Calendar & Scheduling"
+    title: "Reminder Notifications"
+    description: >
+      As a user, I want notifications for upcoming reminders,
+      so that I stay informed of upcoming bills or goals.
+    priority: High
+    business_value: >
+      Ensures reminders translate into action.
+    acceptance_criteria:
+      - Notification sent at configured time
+      - Works for recurring and one-time events
+      - Supports push + email
+    technical_notes:
+      backend: "Notification Service + Calendar Scheduler"
+      frontend: "ReminderNotificationUI.tsx"
+    references:
+      - "PRD v0.97.3 Epic 11.4"
+
+
+
+

@@ -1,0 +1,135 @@
+
+
+---
+
+## `all-stories.yaml`
+
+sprints:
+  - sprint: 1
+    epics: [0, 1, 2]
+    stories:
+      # Epic 0
+      - { id: "0.1", title: "Account Creation Page" }
+      - { id: "0.2", title: "Host/Owner Definition" }
+      - { id: "0.3", title: "Add Members Placeholder" }
+      - { id: "0.4", title: "Current Member Display" }
+      - { id: "0.5", title: "Multi-language Onboarding Labels" }
+      - { id: "0.6", title: "Responsive Onboarding Page" }
+      # Epic 1
+      - { id: "1.1", title: "Signup & Login Flow" }
+      - { id: "1.2", title: "Password Reset & Recovery" }
+      - { id: "1.3", title: "Multi-Factor Authentication (MFA)" }
+      - { id: "1.4", title: "Session Management" }
+      # Epic 2
+      - { id: "2.1", title: "Group Summary Dashboard" }
+      - { id: "2.2", title: "Role-Based Permissions View" }
+      - { id: "2.3", title: "Family Progress Indicators" }
+      - { id: "2.4", title: "QR Code Invite" }
+
+  - sprint: 2
+    epics: [8, 13]
+    stories:
+      - { id: "8.1", title: "Full Localization" }
+      - { id: "8.2", title: "RTL/LTR Support" }
+      - { id: "8.3", title: "Responsive Design Framework" }
+      - { id: "13.1", title: "Dark Mode" }
+      - { id: "13.2", title: "Theme Selection" }
+      - { id: "13.3", title: "Style Customization" }
+      - { id: "13.4", title: "Home Layout Memory" }
+      - { id: "13.5", title: "Responsive Theme Compatibility" }
+
+  - sprint: 3
+    epics: [3, 17]
+    stories:
+      - { id: "3.1", title: "Add & Edit Expense" }
+      - { id: "3.2", title: "Add & Edit Income" }
+      - { id: "3.3", title: "Hybrid Bank Sync" }
+      - { id: "3.4", title: "Expense Search & Filters" }
+      - { id: "3.5", title: "Expense Notifications" }
+      - { id: "17.1", title: "Custom Categories" }
+      - { id: "17.2", title: "Multi-Level Categories" }
+      - { id: "17.3", title: "Icons & Colors" }
+      - { id: "17.4", title: "Merge Categories" }
+      - { id: "17.5", title: "Global vs Personal Categories" }
+
+  - sprint: 4
+    epics: [14, 15, 16]
+    stories:
+      - { id: "14.1", title: "Add Block" }
+      - { id: "14.2", title: "Reorder Blocks" }
+      - { id: "14.3", title: "Quick Balance View" }
+      - { id: "14.4", title: "Drill-down Block" }
+      - { id: "14.5", title: "Sync Layout Across Devices" }
+      - { id: "15.1", title: "Create & Edit Fund" }
+      - { id: "15.2", title: "Assign Fund Permissions" }
+      - { id: "15.3", title: "Fund Transaction History" }
+      - { id: "15.4", title: "Fund Balance Calculation" }
+      - { id: "15.5", title: "Fund Archival" }
+      - { id: "16.1", title: "Create & Edit Wallet" }
+      - { id: "16.2", title: "Link Wallet to User" }
+      - { id: "16.3", title: "Wallet Transaction History" }
+      - { id: "16.4", title: "Wallet Balance Calculation" }
+      - { id: "16.5", title: "Wallet Archival" }
+
+  - sprint: 5
+    epics: [9]
+    stories:
+      - { id: "9.1", title: "Subscription Tiers" }
+      - { id: "9.2", title: "Payment Gateway Integration" }
+      - { id: "9.3", title: "Billing History" }
+      - { id: "9.4", title: "Subscription Renewal & Alerts" }
+
+  - sprint: 6
+    epics: [4, 5]
+    stories:
+      - { id: "4.1", title: "Create & Edit Savings Goal" }
+      - { id: "4.2", title: "Track Goal Progress" }
+      - { id: "4.3", title: "Goal Reached Alert" }
+      - { id: "4.4", title: "Shared Family Goals" }
+      - { id: "5.1", title: "Recurring Allowance" }
+      - { id: "5.2", title: "Assign Chores" }
+      - { id: "5.3", title: "Track Chore Completion" }
+      - { id: "5.4", title: "Auto-Credit Allowance on Completion" }
+      - { id: "5.5", title: "Chore & Allowance History" }
+
+  - sprint: 7
+    epics: [6, 7]
+    stories:
+      - { id: "6.1", title: "Badge & Achievement System" }
+      - { id: "6.2", title: "Financial Literacy Challenges" }
+      - { id: "6.3", title: "Leaderboard" }
+      - { id: "7.1", title: "Push & Email Notifications" }
+      - { id: "7.2", title: "Per-user Notification Preferences" }
+      - { id: "7.3", title: "Critical Alerts" }
+
+  - sprint: 8
+    epics: [10, 18]
+    stories:
+      - { id: "10.1", title: "Feedback Form" }
+      - { id: "10.2", title: "Support Chat" }
+      - { id: "10.3", title: "FAQ & Help Center" }
+      - { id: "18.1", title: "Family Group Chat" }
+      - { id: "18.2", title: "Direct Text Messaging" }
+      - { id: "18.3", title: "Voice Messaging" }
+      - { id: "18.4", title: "Attachments" }
+      - { id: "18.5", title: "Read Receipts" }
+
+  - sprint: 9
+    epics: [11]
+    stories:
+      - { id: "11.1", title: "Bill Reminders" }
+      - { id: "11.2", title: "Family Shared Calendar" }
+      - { id: "11.3", title: "External Calendar Sync" }
+      - { id: "11.4", title: "Reminder Notifications" }
+
+  - sprint: 10
+    epics: [12]
+    stories:
+      - { id: "12.1", title: "Multi-Currency Transactions" }
+      - { id: "12.2", title: "Exchange Rate Integration" }
+      - { id: "12.3", title: "Currency Formatting" }
+      - { id: "12.4", title: "User Currency Preferences" }
+
+
+
+
