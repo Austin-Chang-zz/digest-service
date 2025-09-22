@@ -1,0 +1,65 @@
+# MVP.yaml
+mvp_version: 1.0
+project: Family Expense Tracker
+sprint: 1
+scope: Minimal Viable Product
+
+epics:
+  - id: "0"
+    title: "Account Creation & Onboarding"
+    stories:
+      - id: "0.1"
+        title: "Account Creation Page"
+        priority: Critical
+        rationale: "Absolute minimum for single user onboarding"
+        
+      - id: "0.2"  
+        title: "Host/Owner Definition"
+        priority: Critical
+        rationale: "Essential for establishing primary user role"
+
+  - id: "1"
+    title: "Authentication & Security"
+    stories:
+      - id: "1.1"
+        title: "Signup & Login Flow"
+        priority: Critical
+        rationale: "Core authentication functionality"
+
+excluded_stories:
+  - "0.3": "Add Members Placeholder - defer multi-user features"
+  - "0.4": "Current Member Display - not needed for single user"
+  - "0.5": "Multi-language Labels - defer internationalization"
+  - "0.6": "Responsive Onboarding - defer mobile optimization"
+  - "1.2": "Password Reset - nice to have, not MVP critical"
+  - "1.3": "MFA - security enhancement for later"
+  - "1.4": "Session Management - advanced feature"
+  - "2.1": "Group Dashboard - defer group features"
+  - "2.2": "Role-Based Permissions - single user doesn't need roles"
+  - "2.3": "Family Progress Indicators - defer analytics"
+  - "2.4": "QR Invite - defer multi-user invitations"
+
+mvp_capabilities:
+  - Single user account creation
+  - Basic authentication (login/logout)
+  - Personal expense tracking (isolated mode)
+  - No family group functionality
+  - No multi-user features
+  - No advanced security
+
+development_approach:
+  strategy: "Build isolated single-user version first"
+  phase_2: "Add family/group features in subsequent sprint"
+  data_model: "Single user schema without family relationships"
+  auth_model: "Basic email/password only"
+
+success_criteria:
+  - "Single user can create account and login"
+  - "Basic expense tracking functionality works"
+  - "No dependencies on multi-user features"
+  - "Core data model supports future expansion"
+
+notes: |
+  This MVP represents the absolute smallest viable product that can be built and tested.
+  It defers all multi-user, family, and advanced features to focus on core functionality.
+  The architecture can be designed to support future expansion without breaking changes.

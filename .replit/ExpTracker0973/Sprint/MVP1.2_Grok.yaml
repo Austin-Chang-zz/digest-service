@@ -1,0 +1,175 @@
+# < filename="MVP.yaml">
+
+mvp:
+  version: 0.97.3
+  scope: "Sprint 1 - Minimal MVP: Core Account Setup and Group Invitation"
+  description: >
+    This minimal MVP validates the core value proposition of the Family Expense Tracker:
+    enabling users to quickly sign up, create a family group, and invite members in a secure,
+    multi-language, mobile-friendly environment. It excludes advanced authentication,
+    dashboards, and role management to focus on essential user acquisition and group formation.
+  business_goals:
+    - Achieve 95% onboarding completion rate in &#x3C;3 minutes
+    - Enable global access with multi-language support
+    - Validate group creation via QR invites
+    - Collect early user feedback on setup experience
+  success_metrics:
+    - User acquisition: 50+ signups in beta
+    - Group formation: 60% of users create a group with 1+ invite sent
+    - Satisfaction: NPS >6 from initial users
+    - Technical: 99.9% uptime, no critical security issues
+  constraints:
+    - Timeline: Complete in Sprint 1 (2 weeks)
+    - Resources: Core team (PM, Architect, 1-2 Devs, UX)
+    - Technical: Next.js/NestJS/PostgreSQL stack (Architecture v0.97.3)
+    - Scope: No bank sync, payments, or advanced features
+  risks:
+    - Multi-language setup delays testing (mitigation: Prioritize EN, test others later)
+    - QR invite security flaws (mitigation: Use secure tokens, short expiry)
+    - Mobile responsiveness issues (mitigation: Rigorous BrowserStack testing)
+  epics:
+    - id: 0
+      title: "Account Creation &#x26; Onboarding"
+      priority: High
+      stories:
+        - id: "0.1"
+          title: "Account Creation Page"
+          description: >
+            As a new family user, I want to create an account with my name, role, and group setup,
+            so that I can start managing my family’s finances.
+          priority: High
+          business_value: >
+            Core entry point for users to join and set up a family group in under 3 minutes.
+          acceptance_criteria:
+            - Users enter name, role (default: Parent), and group name
+            - Setup completes in &#x3C;3 minutes with 95% success on mobile
+            - Supports EN, ZH-TW, ZH-CN, JA, ES
+            - Responsive across devices
+          technical_notes:
+            frontend: "Next.js AccountCreationForm.tsx"
+            backend: "NestJS Auth Service + Family Mgmt Service"
+            db: "users table (name, role, group_id)"
+            integration: "Creates family group on signup"
+          references:
+            - "PRD v0.97.3 Epic 0.1"
+            - "UX v0.97.3 Onboarding Flow"
+            - "Architecture v0.97.3 Auth + Family Mgmt"
+        - id: "0.5"
+          title: "Multi-language Onboarding Labels"
+          description: >
+            As a global user, I want onboarding in my language,
+            so that I can easily understand and complete setup.
+          priority: High
+          business_value: >
+            Ensures global accessibility from launch.
+          acceptance_criteria:
+            - Text in 5 languages (EN, ZH-TW, ZH-CN, JA, ES)
+            - Auto-detect browser language
+            - Basic RTL support
+          technical_notes:
+            frontend: "next-i18next integration"
+            backend: "Locale stored in user profile"
+          references:
+            - "PRD v0.97.3 Epic 0.5"
+            - "UX v0.97.3 Global UX"
+            - "Architecture v0.97.3 i18n"
+        - id: "0.6"
+          title: "Responsive Onboarding Page"
+          description: >
+            As a mobile user, I want onboarding to work seamlessly on my device,
+            so that I can sign up anywhere.
+          priority: High
+          business_value: >
+            Critical for 70%+ mobile users; ensures accessibility.
+          acceptance_criteria:
+            - Mobile-first design
+            - Tested on iOS/Android/desktop
+            - 95% task completion on mobile
+          technical_notes:
+            frontend: "Tailwind CSS responsive classes"
+            testing: "BrowserStack emulation"
+          references:
+            - "PRD v0.97.3 Epic 0.6"
+            - "UX v0.97.3 RWD"
+            - "Architecture v0.97.3 Responsive Design"
+    - id: 1
+      title: "Authentication &#x26; Security"
+      priority: High
+      stories:
+        - id: "1.1"
+          title: "Signup &#x26; Login Flow"
+          description: >
+            As a user, I want secure signup and login,
+            so that I can access my account safely.
+          priority: High
+          business_value: >
+            Foundational security for user trust.
+          acceptance_criteria:
+            - Email/password signup and login
+            - Strong password validation
+            - JWT session creation
+          technical_notes:
+            frontend: "AuthForm.tsx"
+            backend: "NestJS Auth Module with JWT"
+            db: "users table with hashed passwords"
+          references:
+            - "PRD v0.97.3 Epic 1.1"
+            - "Architecture v0.97.3 Auth Service"
+        - id: "1.4"
+          title: "Session Management"
+          description: >
+            As a user, I want automatic logout on inactivity,
+            so that my session remains secure.
+          priority: Medium
+          business_value: >
+            Prevents unauthorized access on shared devices.
+          acceptance_criteria:
+            - 30-min inactivity timeout
+            - Basic JWT session handling
+            - Manual logout option
+          technical_notes:
+            backend: "JWT with expiry"
+            frontend: "Idle timer hook"
+          references:
+            - "PRD v0.97.3 Epic 1.4"
+            - "Architecture v0.97.3 Session Mgmt"
+    - id: 2
+      title: "Group Management &#x26; Invites"
+      priority: High
+      stories:
+        - id: "2.4"
+          title: "QR Code Invite"
+          description: >
+            As a group owner, I want to invite members via QR code,
+            so that they can quickly join my family group.
+          priority: High
+          business_value: >
+            Simplest way to validate group formation; reduces friction.
+          acceptance_criteria:
+            - Owner generates QR with secure link
+            - Scanning auto-fills join form
+            - Link expires in 24 hours
+          technical_notes:
+            frontend: "QRCodeGenerator.tsx"
+            backend: "Invite Service with tokens"
+            db: "invites table"
+          references:
+            - "PRD v0.97.3 Epic 2.4"
+            - "UX v0.97.3 Invite Flow"
+            - "Architecture v0.97.3 Invite Service"
+  exclusions:
+    - Role management (owner assignment, permissions UI)
+    - Member display and progress indicators
+    - Advanced authentication (social login, MFA, password reset)
+    - Dashboards or advanced group features
+    - Any features from Sprints 2+ (e.g., expenses, chat, gamification)
+  next_steps:
+    - Launch beta with 50 users
+    - Measure signup and invite metrics
+    - Collect feedback via simple form (Epic 10 placeholder)
+    - Plan Sprint 2 for role enhancements
+  references:
+    - "PRD v0.97.3: Sprint 1 Scope"
+    - "Architecture v0.97.3: Core Services (Auth, Family, Invite)"
+    - "UX v0.97.3: Onboarding &#x26; Invite Flows"
+    - "Sprint1.yaml: Stories 0.1, 0.5, 0.6, 1.1, 1.4, 2.4"

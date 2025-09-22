@@ -1,0 +1,94 @@
+
+
+# **Scope:**
+
+# * **Epic 9: Pricing & Subscription MVP** (4 stories)
+
+---
+
+## `sprint-05.yaml`
+
+
+stories:
+  - id: "9.1"
+    epic: "Epic 9: Pricing & Subscription"
+    title: "Subscription Tiers"
+    description: >
+      As a user, I want to see available subscription tiers,
+      so that I can choose the plan that fits my needs.
+    priority: High
+    business_value: >
+      Enables monetization of the product and sets up the revenue model.
+    acceptance_criteria:
+      - Pricing page lists all subscription tiers
+      - Each tier shows features and price
+      - Free tier available for onboarding
+    technical_notes:
+      frontend: "PricingPage.tsx"
+      backend: "Subscription Service"
+      db: "subscription_plans table"
+    references:
+      - "PRD v0.97.3 Epic 9.1"
+
+  - id: "9.2"
+    epic: "Epic 9: Pricing & Subscription"
+    title: "Payment Gateway Integration"
+    description: >
+      As a user, I want to pay for a subscription using a secure gateway,
+      so that I can activate premium features.
+    priority: High
+    business_value: >
+      Direct revenue stream; critical to business sustainability.
+    acceptance_criteria:
+      - User can enter credit card or PayPal info
+      - Payment processed via Stripe/PayPal
+      - Successful payment activates subscription
+    technical_notes:
+      backend: "Stripe/PayPal integration"
+      frontend: "CheckoutForm.tsx"
+      db: "subscriptions table with status"
+    references:
+      - "PRD v0.97.3 Epic 9.2"
+
+  - id: "9.3"
+    epic: "Epic 9: Pricing & Subscription"
+    title: "Billing History"
+    description: >
+      As a user, I want to see my past billing history,
+      so that I can track charges and invoices.
+    priority: Medium
+    business_value: >
+      Increases trust and transparency with customers.
+    acceptance_criteria:
+      - List of invoices visible in user account
+      - Each invoice shows date, amount, status
+      - Download invoice as PDF
+    technical_notes:
+      backend: "Billing DB + Invoice Generator"
+      frontend: "BillingHistory.tsx"
+    references:
+      - "PRD v0.97.3 Epic 9.3"
+
+  - id: "9.4"
+    epic: "Epic 9: Pricing & Subscription"
+    title: "Subscription Renewal & Alerts"
+    description: >
+      As a user, I want alerts before my subscription expires,
+      so that I can renew without interruption.
+    priority: Medium
+    business_value: >
+      Reduces churn and ensures continuous service usage.
+    acceptance_criteria:
+      - Alert sent 7 days before expiry
+      - Expired subscriptions restrict premium features
+      - Grace period handling implemented
+    technical_notes:
+      backend: "Notification Service + Cron job"
+      frontend: "SubscriptionStatusBanner.tsx"
+    references:
+      - "PRD v0.97.3 Epic 9.4"
+
+
+
+
+

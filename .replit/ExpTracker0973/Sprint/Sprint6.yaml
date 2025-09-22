@@ -1,0 +1,185 @@
+
+
+# **Scope:**
+
+# * **Epic 4: Goals & Savings** (4 stories)
+# * **Epic 5: Allowances & Chores** (5 stories)
+
+---
+
+## `sprint-06.yaml`
+
+stories:
+  - id: "4.1"
+    epic: "Epic 4: Goals & Savings"
+    title: "Create & Edit Savings Goal"
+    description: >
+      As a user, I want to create and edit savings goals,
+      so that I can track progress towards family financial objectives.
+    priority: High
+    business_value: >
+      Encourages savings habits and long-term planning for families.
+    acceptance_criteria:
+      - User can create goal with target amount, name, deadline
+      - Goal editable after creation
+      - Progress linked to transactions
+    technical_notes:
+      frontend: "GoalForm.tsx"
+      backend: "Goal Service"
+      db: "goals table"
+    references:
+      - "PRD v0.97.3 Epic 4.1"
+
+  - id: "4.2"
+    epic: "Epic 4: Goals & Savings"
+    title: "Track Goal Progress"
+    description: >
+      As a user, I want to see progress towards my savings goals,
+      so that I know how close I am to achieving them.
+    priority: High
+    business_value: >
+      Visualizes savings journey and increases motivation.
+    acceptance_criteria:
+      - Progress bar displayed on dashboard
+      - Auto-updated with linked transactions
+      - Completion % shown
+    technical_notes:
+      frontend: "GoalProgressBar.tsx"
+      backend: "Goal tracking aggregation"
+    references:
+      - "PRD v0.97.3 Epic 4.2"
+
+  - id: "4.3"
+    epic: "Epic 4: Goals & Savings"
+    title: "Goal Reached Alert"
+    description: >
+      As a user, I want to be notified when a goal is reached,
+      so that I can celebrate or adjust new targets.
+    priority: Medium
+    business_value: >
+      Boosts engagement and encourages continued goal-setting.
+    acceptance_criteria:
+      - Notification triggered when balance ≥ goal target
+      - Alert delivered in-app + push
+    technical_notes:
+      backend: "Notification Service"
+      frontend: "GoalNotification.tsx"
+    references:
+      - "PRD v0.97.3 Epic 4.3"
+
+  - id: "4.4"
+    epic: "Epic 4: Goals & Savings"
+    title: "Shared Family Goals"
+    description: >
+      As a family, we want to set shared savings goals,
+      so that we can work together towards financial targets.
+    priority: High
+    business_value: >
+      Builds family collaboration and teamwork around finances.
+    acceptance_criteria:
+      - Shared goals visible to all group members
+      - Progress contributed by linked wallets/funds
+    technical_notes:
+      backend: "Shared Goal API"
+      frontend: "SharedGoalsUI.tsx"
+    references:
+      - "PRD v0.97.3 Epic 4.4"
+
+  - id: "5.1"
+    epic: "Epic 5: Allowances & Chores"
+    title: "Recurring Allowance"
+    description: >
+      As a parent, I want to set recurring allowances,
+      so that my children receive regular pocket money automatically.
+    priority: High
+    business_value: >
+      Automates routine payments and reinforces budgeting habits.
+    acceptance_criteria:
+      - Allowance schedule (daily/weekly/monthly)
+      - Auto-credit to child’s wallet
+      - Parent can pause/resume
+    technical_notes:
+      backend: "Allowance Service with cron jobs"
+      frontend: "AllowanceForm.tsx"
+      db: "allowances table"
+    references:
+      - "PRD v0.97.3 Epic 5.1"
+
+  - id: "5.2"
+    epic: "Epic 5: Allowances & Chores"
+    title: "Assign Chores"
+    description: >
+      As a parent, I want to assign chores to children,
+      so that allowances can be tied to task completion.
+    priority: High
+    business_value: >
+      Teaches responsibility and financial literacy via tasks.
+    acceptance_criteria:
+      - Parent can create chore with description, deadline, reward
+      - Chores visible in child’s task list
+    technical_notes:
+      frontend: "ChoreList.tsx"
+      backend: "Chore API"
+      db: "chores table"
+    references:
+      - "PRD v0.97.3 Epic 5.2"
+
+  - id: "5.3"
+    epic: "Epic 5: Allowances & Chores"
+    title: "Track Chore Completion"
+    description: >
+      As a parent, I want to track when chores are completed,
+      so that rewards are given fairly.
+    priority: High
+    business_value: >
+      Ensures accountability for children earning allowances.
+    acceptance_criteria:
+      - Child marks chore complete
+      - Parent reviews and approves
+      - Completion logged in history
+    technical_notes:
+      frontend: "ChoreCompletionUI.tsx"
+      backend: "Chore Service updates chore status"
+    references:
+      - "PRD v0.97.3 Epic 5.3"
+
+  - id: "5.4"
+    epic: "Epic 5: Allowances & Chores"
+    title: "Auto-Credit Allowance on Completion"
+    description: >
+      As a child, I want to receive allowance automatically upon chore completion,
+      so that rewards are consistent and motivating.
+    priority: High
+    business_value: >
+      Links financial reward to behavior, reinforcing habits.
+    acceptance_criteria:
+      - Chore completion triggers credit to wallet
+      - Parent approval required before credit
+    technical_notes:
+      backend: "Allowance Service linked to Wallet API"
+      db: "wallet_transactions table"
+    references:
+      - "PRD v0.97.3 Epic 5.4"
+
+  - id: "5.5"
+    epic: "Epic 5: Allowances & Chores"
+    title: "Chore & Allowance History"
+    description: >
+      As a family, we want to view a history of chores and allowances,
+      so that progress and rewards are transparent.
+    priority: Medium
+    business_value: >
+      Provides accountability and insights into child development.
+    acceptance_criteria:
+      - History tab shows past chores and allowance payments
+      - Filterable by child and date
+    technical_notes:
+      frontend: "AllowanceHistory.tsx"
+      backend: "Chore/Allowance API history endpoints"
+    references:
+      - "PRD v0.97.3 Epic 5.5"
+
+
+
+
+

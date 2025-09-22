@@ -1,0 +1,290 @@
+
+# **Scope:**
+
+# * **Epic 14: Home Fund/Wallet Blocks** (5 stories)
+# * **Epic 15: Fund Management** (5 stories)
+# * **Epic 16: Wallet Management** (5 stories)
+
+---
+
+## `sprint-04.yaml`
+
+stories:
+  - id: "14.1"
+    epic: "Epic 14: Home Fund/Wallet Blocks"
+    title: "Add Block"
+    description: >
+      As a user, I want to add new blocks (fund/wallet summaries) to my home screen,
+      so that I can customize my dashboard.
+    priority: High
+    business_value: >
+      Increases personalization and visibility of key financial info.
+    acceptance_criteria:
+      - User can add a new fund/wallet block
+      - Block displays balance summary
+      - Saved to user layout preferences
+    technical_notes:
+      frontend: "FundWalletBlock.tsx"
+      backend: "Preferences API"
+      db: "user_home_layout table"
+    references:
+      - "PRD v0.97.3 Epic 14.1"
+
+  - id: "14.2"
+    epic: "Epic 14: Home Fund/Wallet Blocks"
+    title: "Reorder Blocks"
+    description: >
+      As a user, I want to reorder home screen blocks,
+      so that I can organize them to my liking.
+    priority: Medium
+    business_value: >
+      Improves user experience and control over dashboard view.
+    acceptance_criteria:
+      - Blocks can be drag-and-dropped
+      - Order saved in preferences
+    technical_notes:
+      frontend: "BlockGridManager.tsx"
+      backend: "Preferences API"
+    references:
+      - "PRD v0.97.3 Epic 14.2"
+
+  - id: "14.3"
+    epic: "Epic 14: Home Fund/Wallet Blocks"
+    title: "Quick Balance View"
+    description: >
+      As a user, I want a quick glance of balances on my home screen,
+      so that I can see financial status immediately.
+    priority: High
+    business_value: >
+      Provides instant value; makes home screen useful.
+    acceptance_criteria:
+      - Blocks show total balance, recent change
+      - Supports fund and wallet summaries
+    technical_notes:
+      frontend: "BalanceWidget.tsx"
+      backend: "Fund/Wallet Balance API"
+    references:
+      - "PRD v0.97.3 Epic 14.3"
+
+  - id: "14.4"
+    epic: "Epic 14: Home Fund/Wallet Blocks"
+    title: "Drill-down Block"
+    description: >
+      As a user, I want to click a block to see details,
+      so that I can explore transactions quickly.
+    priority: Medium
+    business_value: >
+      Improves navigability and reduces clicks.
+    acceptance_criteria:
+      - Click opens detailed view
+      - Details include transaction history
+    technical_notes:
+      frontend: "FundDetail.tsx"
+      backend: "Transaction API"
+    references:
+      - "PRD v0.97.3 Epic 14.4"
+
+  - id: "14.5"
+    epic: "Epic 14: Home Fund/Wallet Blocks"
+    title: "Sync Layout Across Devices"
+    description: >
+      As a user, I want my home layout synced across devices,
+      so that I have a consistent experience.
+    priority: Medium
+    business_value: >
+      Encourages cross-device use and user comfort.
+    acceptance_criteria:
+      - Layout changes stored in preferences
+      - Reflected on any device
+    technical_notes:
+      backend: "Preferences Service"
+      db: "user_home_layout table"
+    references:
+      - "PRD v0.97.3 Epic 14.5"
+
+  - id: "15.1"
+    epic: "Epic 15: Fund Management"
+    title: "Create & Edit Fund"
+    description: >
+      As a group owner, I want to create and edit funds,
+      so that I can manage shared family budgets.
+    priority: High
+    business_value: >
+      Enables families to separate finances into logical groups.
+    acceptance_criteria:
+      - Create new fund with name, currency, purpose
+      - Edit fund details
+    technical_notes:
+      frontend: "FundForm.tsx"
+      backend: "Fund Mgmt API"
+      db: "funds table"
+    references:
+      - "PRD v0.97.3 Epic 15.1"
+
+  - id: "15.2"
+    epic: "Epic 15: Fund Management"
+    title: "Assign Fund Permissions"
+    description: >
+      As an owner, I want to assign fund permissions,
+      so that I can control who can spend or view it.
+    priority: High
+    business_value: >
+      Supports safe shared finance within families.
+    acceptance_criteria:
+      - Role-based permissions per fund
+      - Owner can change permissions
+    technical_notes:
+      backend: "Fund-User mapping"
+      db: "fund_permissions table"
+    references:
+      - "PRD v0.97.3 Epic 15.2"
+
+  - id: "15.3"
+    epic: "Epic 15: Fund Management"
+    title: "Fund Transaction History"
+    description: >
+      As a user, I want to view a fund’s transaction history,
+      so that I can understand its usage.
+    priority: High
+    business_value: >
+      Increases transparency and trust.
+    acceptance_criteria:
+      - Shows expenses/incomes linked to fund
+      - Filterable by date
+    technical_notes:
+      frontend: "FundHistory.tsx"
+      backend: "Fund Mgmt API /fund/{id}/transactions"
+    references:
+      - "PRD v0.97.3 Epic 15.3"
+
+  - id: "15.4"
+    epic: "Epic 15: Fund Management"
+    title: "Fund Balance Calculation"
+    description: >
+      As a user, I want to see the fund’s balance,
+      so that I know how much is available.
+    priority: High
+    business_value: >
+      Essential for decision-making on spending.
+    acceptance_criteria:
+      - Balance auto-calculated from linked transactions
+      - Displayed in dashboard and fund details
+    technical_notes:
+      backend: "Aggregation query on transactions"
+    references:
+      - "PRD v0.97.3 Epic 15.4"
+
+  - id: "15.5"
+    epic: "Epic 15: Fund Management"
+    title: "Fund Archival"
+    description: >
+      As a user, I want to archive a fund,
+      so that I can keep records without cluttering active funds.
+    priority: Medium
+    business_value: >
+      Improves usability and long-term data retention.
+    acceptance_criteria:
+      - Archive option in fund settings
+      - Archived funds hidden from dashboard
+    technical_notes:
+      db: "funds.archived_at field"
+    references:
+      - "PRD v0.97.3 Epic 15.5"
+
+  - id: "16.1"
+    epic: "Epic 16: Wallet Management"
+    title: "Create & Edit Wallet"
+    description: >
+      As a user, I want to create and edit wallets,
+      so that I can manage individual accounts.
+    priority: High
+    business_value: >
+      Supports granular financial management within the family.
+    acceptance_criteria:
+      - Create wallet with name, type, currency
+      - Edit wallet details
+    technical_notes:
+      frontend: "WalletForm.tsx"
+      backend: "Wallet Mgmt API"
+      db: "wallets table"
+    references:
+      - "PRD v0.97.3 Epic 16.1"
+
+  - id: "16.2"
+    epic: "Epic 16: Wallet Management"
+    title: "Link Wallet to User"
+    description: >
+      As a group owner, I want to link wallets to specific members,
+      so that accountability is clear.
+    priority: High
+    business_value: >
+      Encourages responsibility and transparency in spending.
+    acceptance_criteria:
+      - Owner can assign wallet to member
+      - Member visibility limited to assigned wallets
+    technical_notes:
+      db: "wallet_user_links table"
+      backend: "Wallet Mgmt API"
+    references:
+      - "PRD v0.97.3 Epic 16.2"
+
+  - id: "16.3"
+    epic: "Epic 16: Wallet Management"
+    title: "Wallet Transaction History"
+    description: >
+      As a user, I want to view wallet transactions,
+      so that I can review account usage.
+    priority: High
+    business_value: >
+      Improves financial tracking at wallet level.
+    acceptance_criteria:
+      - Show expenses/incomes linked to wallet
+      - Filterable by date and category
+    technical_notes:
+      frontend: "WalletHistory.tsx"
+      backend: "Wallet Mgmt API /wallet/{id}/transactions"
+    references:
+      - "PRD v0.97.3 Epic 16.3"
+
+  - id: "16.4"
+    epic: "Epic 16: Wallet Management"
+    title: "Wallet Balance Calculation"
+    description: >
+      As a user, I want to see the wallet’s balance,
+      so that I can make informed spending decisions.
+    priority: High
+    business_value: >
+      Core feature for financial awareness.
+    acceptance_criteria:
+      - Balance auto-calculated from linked transactions
+      - Displayed in dashboard and wallet details
+    technical_notes:
+      backend: "DB aggregation query"
+    references:
+      - "PRD v0.97.3 Epic 16.4"
+
+  - id: "16.5"
+    epic: "Epic 16: Wallet Management"
+    title: "Wallet Archival"
+    description: >
+      As a user, I want to archive wallets,
+      so that I can reduce dashboard clutter without losing history.
+    priority: Medium
+    business_value: >
+      Keeps UI clean while preserving records.
+    acceptance_criteria:
+      - Archive option in wallet settings
+      - Archived wallets hidden from dashboard
+    technical_notes:
+      db: "wallets.archived_at field"
+    references:
+      - "PRD v0.97.3 Epic 16.5"
+
+# ✅ Sprint 4 Summary
+
+# * **Epic 14: Home Blocks** → 5 stories
+# * **Epic 15: Fund Management** → 5 stories
+# * **Epic 16: Wallet Management** → 5 stories
+#   📦 **Total Sprint 4 = 15 stories in one YAML file (`sprint-04.yaml`)**
+
+

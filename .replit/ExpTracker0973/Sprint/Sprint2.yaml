@@ -1,0 +1,166 @@
+
+
+# 📂 Sprint 2 – Combined Story Draft File
+
+# **Scope:**
+
+# * **Epic 8: Multi-language & RWD** (3 stories)
+# * **Epic 13: Personalization & Theme System** (5 stories)
+
+
+## `sprint-02.yaml`
+
+stories:
+  - id: "8.1"
+    epic: "Epic 8: Multi-Language & RWD"
+    title: "Full Localization"
+    description: >
+      As a multilingual user, I want the entire app localized into supported languages
+      so that I can use the system comfortably in my own language.
+    priority: High
+    business_value: >
+      Expands adoption across different regions and personas, meeting MVP global goals.
+    acceptance_criteria:
+      - Supports EN, ZH-TW, ZH-CN, JA, ES
+      - Auto-detect browser locale
+      - Manual language switching available
+    technical_notes:
+      frontend: "next-i18next integration"
+      backend: "Multi-language Service"
+      files: "locales/{lang}/common.json"
+    references:
+      - "PRD v0.97.3 Epic 8.1"
+      - "UX Accessibility Goals"
+
+  - id: "8.2"
+    epic: "Epic 8: Multi-Language & RWD"
+    title: "RTL/LTR Support"
+    description: >
+      As a user of right-to-left languages, I want the app to render correctly,
+      so that my experience is consistent with my locale.
+    priority: Medium
+    business_value: >
+      Future-proofs the system for RTL languages like Arabic and Hebrew.
+    acceptance_criteria:
+      - Proper alignment for RTL text
+      - Toggle between RTL and LTR modes
+    technical_notes:
+      frontend: "CSS bidi + Tailwind adjustments"
+      testing: "RTL locale simulation"
+    references:
+      - "PRD v0.97.3 Epic 8.2"
+      - "Architecture UI Layer"
+
+  - id: "8.3"
+    epic: "Epic 8: Multi-Language & RWD"
+    title: "Responsive Design Framework"
+    description: >
+      As a mobile-first user, I want the app to adapt to different screen sizes
+      so that I can use it across devices.
+    priority: High
+    business_value: >
+      Ensures MVP success criteria of 95% mobile usability rate.
+    acceptance_criteria:
+      - Works seamlessly on mobile, tablet, desktop
+      - Touch-friendly controls on mobile
+      - Layout adapts to portrait/landscape
+    technical_notes:
+      frontend: "Tailwind responsive utilities (sm:, md:, lg:)"
+      testing: "Cross-device testing (iOS Safari, Android Chrome, Desktop)"
+    references:
+      - "PRD v0.97.3 Epic 8.3"
+      - "UX Mobile-first Guidelines"
+
+  - id: "13.1"
+    epic: "Epic 13: Personalization & Theme System"
+    title: "Dark Mode"
+    description: >
+      As a user, I want to enable dark mode,
+      so that I can reduce eye strain and customize my viewing preference.
+    priority: Medium
+    business_value: >
+      Improves accessibility and user satisfaction.
+    acceptance_criteria:
+      - Toggle between light/dark mode
+      - Dark mode remembered on next login
+    technical_notes:
+      frontend: "ThemeProvider.tsx with Tailwind dark mode"
+      db: "user_preferences.theme"
+    references:
+      - "PRD v0.97.3 Epic 13.1"
+      - "UX Theme Guidelines"
+
+  - id: "13.2"
+    epic: "Epic 13: Personalization & Theme System"
+    title: "Theme Selection"
+    description: >
+      As a user, I want to select a preferred theme style,
+      so that I can personalize my app experience.
+    priority: Medium
+    business_value: >
+      Adds flexibility and personalization, boosting retention.
+    acceptance_criteria:
+      - Theme selection screen available in settings
+      - Selected theme persists across devices
+    technical_notes:
+      frontend: "ThemeSelector.tsx"
+      db: "user_preferences.theme_id"
+    references:
+      - "PRD v0.97.3 Epic 13.2"
+
+  - id: "13.3"
+    epic: "Epic 13: Personalization & Theme System"
+    title: "Style Customization"
+    description: >
+      As a user, I want to customize styles (e.g., fonts, colors),
+      so that I can tailor the app appearance to my liking.
+    priority: Low
+    business_value: >
+      Differentiates product by offering deeper personalization.
+    acceptance_criteria:
+      - Allow user to adjust fonts, colors within safe bounds
+      - Settings applied immediately across UI
+    technical_notes:
+      frontend: "StyleCustomization.tsx"
+      db: "user_preferences.custom_style"
+    references:
+      - "PRD v0.97.3 Epic 13.3"
+
+  - id: "13.4"
+    epic: "Epic 13: Personalization & Theme System"
+    title: "Home Layout Memory"
+    description: >
+      As a user, I want my home screen layout to be remembered,
+      so that I see the same arrangement when I return.
+    priority: Medium
+    business_value: >
+      Improves user comfort and consistency across sessions.
+    acceptance_criteria:
+      - Support reordering/resizing blocks
+      - Layout saved per user
+      - Sync layout across devices
+    technical_notes:
+      frontend: "Drag/drop grid manager"
+      backend: "User Preferences API"
+      db: "user_home_layout table"
+    references:
+      - "PRD v0.97.3 Epic 13.4"
+
+  - id: "13.5"
+    epic: "Epic 13: Personalization & Theme System"
+    title: "Responsive Theme Compatibility"
+    description: >
+      As a mobile user, I want themes to look correct across devices,
+      so that personalization does not break on small screens.
+    priority: High
+    business_value: >
+      Ensures personalization features remain usable on mobile devices.
+    acceptance_criteria:
+      - All themes tested on mobile and desktop
+      - UI adapts to breakpoints without clipping
+    technical_notes:
+      frontend: "QA cross-device responsive testing"
+    references:
+      - "PRD v0.97.3 Epic 13.5"
+
+
