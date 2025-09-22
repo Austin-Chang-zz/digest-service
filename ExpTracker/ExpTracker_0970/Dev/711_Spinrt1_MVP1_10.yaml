@@ -1,0 +1,327 @@
+# Implementation Plan & Skeleton Code — MVP1 (Family Expense Tracker)
+
+# **Source (requirements):** Sprint1\_MVP1\_10.yaml. Key stories: Account Creation & Onboarding (Account Creation Page, Host/Owner Definition), Authentication & Security (Signup & Login Flow). fileciteturn0file0
+
+
+## 1) Overview & Goals
+
+# * Build single-user MVP that allows creating an account, signing in, and recording personal expenses (create/read/update/delete).
+# * Keep architecture minimal and extensible for multi-user later. Success criteria from YAML applied. fileciteturn0file0
+
+
+## 2) Tech stack (recommended for quick MVP)
+
+1. Backend: Node.js + Express
+2. Database: SQLite (via Prisma ORM) — zero-ops and easy to migrate to Postgres later
+3. Auth: Email/password with bcrypt + JWT session tokens (simple, stateless)
+4. Frontend: React (Vite) + TailwindCSS
+5. Dev tooling: nodemon, eslint, prettier, ts-node (TypeScript recommended)
+
+---
+
+## 3) High-level Implementation Plan (phases & tasks)
+
+1. Project scaffolding (1 day)
+
+   * Initialize monorepo or two folders: `/backend` and `/frontend`
+   * Setup Git, basic README, .env handling
+
+2. Backend: data model + auth (1.5 days)
+
+   * Setup Prisma + SQLite
+   * Define models: User, Expense
+   * Implement signup (hash password), login (verify + issue JWT)
+   * Implement middleware to protect routes
+
+3. Backend: expense CRUD (1 day)
+
+   * Implement endpoints: GET /api/expenses, POST /api/expenses, PUT /api/expenses/\:id, DELETE /api/expenses/\:id
+
+4. Frontend: auth pages + basic dashboard (2 days)
+
+   * Signup and Login pages (forms, client-side validation)
+   * Dashboard: list expenses, add expense modal/page
+
+5. Integration + E2E smoke tests (0.5 day)
+
+   * Verify signup → login → create expense flow
+
+6. Polish & docs (0.5 day)
+
+   * README run instructions, env variable notes, migration notes
+
+**Total estimated dev time:** \~6–7 days (solo) — trimmed for MVP scope from YAML. fileciteturn0file0
+
+---
+
+## 4) Data model (Prisma schema / simple ER)
+
+```
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  name      String?
+  createdAt DateTime @default(now())
+  expenses  Expense[]
+}
+
+model Expense {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  amount    Float
+  category  String
+  note      String?
+  date      DateTime @default(now())
+}
+```
+
+---
+
+## 5) Backend skeleton (TypeScript + Express + Prisma)
+
+`/backend/package.json` (essential parts)
+
+```json
+{
+  "name": "fet-backend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "ts-node-dev --respawn src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  }
+}
+```
+
+`/backend/src/index.ts`
+
+```ts
+import express from 'express';
+import cors from 'cors';
+import authRoutes from './routes/auth';
+import expensesRoutes from './routes/expenses';
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+app.use('/api/auth', authRoutes);
+app.use('/api/expenses', expensesRoutes);
+
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, ()=> console.log(`Backend running on ${PORT}`));
+```
+
+`/backend/src/routes/auth.ts`
+
+```ts
+import { Router } from 'express';
+import prisma from '../utils/prisma';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+
+const router = Router();
+
+router.post('/signup', async (req, res) => {
+  const { email, password, name } = req.body;
+  if (!email || !password) return res.status(400).json({ error: 'email+password required' });
+  const existing = await prisma.user.findUnique({ where: { email } });
+  if (existing) return res.status(409).json({ error: 'email exists' });
+  const hash = await bcrypt.hash(password, 10);
+  const user = await prisma.user.create({ data: { email, password: hash, name } });
+  const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET!, { expiresIn: '7d' });
+  res.json({ token, user: { id: user.id, email: user.email, name: user.name } });
+});
+
+router.post('/login', async (req, res) => {
+  const { email, password } = req.body;
+  const user = await prisma.user.findUnique({ where: { email } });
+  if (!user) return res.status(401).json({ error: 'invalid credentials' });
+  const ok = await bcrypt.compare(password, user.password);
+  if (!ok) return res.status(401).json({ error: 'invalid credentials' });
+  const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET!, { expiresIn: '7d' });
+  res.json({ token, user: { id: user.id, email: user.email, name: user.name } });
+});
+
+export default router;
+```
+
+`/backend/src/middleware/auth.ts`
+
+```ts
+import { Request, Response, NextFunction } from 'express';
+import jwt from 'jsonwebtoken';
+
+export interface AuthRequest extends Request { userId?: number }
+
+export function requireAuth(req: AuthRequest, res: Response, next: NextFunction){
+  const auth = req.headers.authorization?.split(' ')[1];
+  if (!auth) return res.status(401).json({ error: 'no token' });
+  try{
+    const payload = jwt.verify(auth, process.env.JWT_SECRET!) as any;
+    req.userId = payload.userId;
+    next();
+  } catch(e){
+    res.status(401).json({ error: 'invalid token' });
+  }
+}
+```
+
+`/backend/src/routes/expenses.ts`
+
+```ts
+import { Router } from 'express';
+import prisma from '../utils/prisma';
+import { requireAuth, AuthRequest } from '../middleware/auth';
+
+const router = Router();
+router.use(requireAuth);
+
+router.get('/', async (req: AuthRequest, res) => {
+  const userId = req.userId!;
+  const list = await prisma.expense.findMany({ where: { userId } });
+  res.json(list);
+});
+
+router.post('/', async (req: AuthRequest, res) => {
+  const userId = req.userId!;
+  const { amount, category, note, date } = req.body;
+  const expense = await prisma.expense.create({ data: { userId, amount, category, note, date: date ? new Date(date) : undefined } });
+  res.json(expense);
+});
+
+// put and delete similar
+
+export default router;
+```
+
+`/backend/src/utils/prisma.ts`
+
+```ts
+import { PrismaClient } from '@prisma/client';
+const prisma = new PrismaClient();
+export default prisma;
+```
+
+Notes: add `.env` with `JWT_SECRET=changeme` and `DATABASE_URL="file:./dev.db"` for Prisma.
+
+---
+
+## 6) Frontend skeleton (React + Vite + Tailwind)
+
+`/frontend/package.json` (scripts)
+
+```json
+{
+  "name": "fet-frontend",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  }
+}
+```
+
+`/frontend/src/main.tsx`
+
+```tsx
+import React from 'react'
+import { createRoot } from 'react-dom/client'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Signup from './pages/Signup'
+import Login from './pages/Login'
+import Dashboard from './pages/Dashboard'
+
+createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/signup" element={<Signup/>} />
+        <Route path="/login" element={<Login/>} />
+        <Route path="/" element={<Dashboard/>} />
+      </Routes>
+    </BrowserRouter>
+  </React.StrictMode>
+)
+```
+
+`/frontend/src/pages/Signup.tsx`
+
+```tsx
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+export default function Signup(){
+  const [email,setEmail]=useState('');
+  const [password,setPassword]=useState('');
+  const navigate = useNavigate();
+
+  async function submit(e:React.FormEvent){
+    e.preventDefault();
+    const res = await fetch('/api/auth/signup',{ method: 'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ email, password }) });
+    if (res.ok) navigate('/');
+    else alert('signup failed');
+  }
+
+  return (
+    <form onSubmit={submit} className="p-4">
+      <input value={email} onChange={e=>setEmail(e.target.value)} placeholder="email" />
+      <input value={password} onChange={e=>setPassword(e.target.value)} placeholder="password" type="password" />
+      <button type="submit">Sign up</button>
+    </form>
+  )
+}
+```
+
+`/frontend/src/pages/Login.tsx` and `Dashboard.tsx` are similar stubs: Login calls `/api/auth/login`, Dashboard fetches `/api/expenses` with token in Authorization header.
+
+---
+
+## 7) Minimal CORS / Proxy setup for dev
+
+* Option A: Start backend on :4000, frontend Vite with proxy in `vite.config.ts` to forward `/api` to `http://localhost:4000`.
+
+---
+
+## 8) Run & Develop steps (quick)
+
+1. Backend
+
+```
+cd backend
+npm install
+# setup .env (JWT_SECRET, DATABASE_URL)
+npx prisma migrate dev --name init
+npm run dev
+```
+
+2. Frontend
+
+```
+cd frontend
+npm install
+npm run dev
+```
+
+---
+
+## 9) Next steps / recommendations
+
+1. Add form validation and friendly onboarding copy for Account Creation Page (story 0.1). fileciteturn0file0
+2. Store minimal user profile (Host/Owner Definition) during signup (story 0.2). fileciteturn0file0
+3. Add server-side input validation and rate-limiting before public demo.
+4. Later sprints: multi-user, password reset, MFA, sessions, roles (deferred per YAML). fileciteturn0file0
+
+---
+
+If you'd like, I can now:
+
+1. generate the actual file tree + exact files for the backend and frontend (I will output them in the canvas).
+2. produce fully typed TS versions for all files with package.json + prisma schema + vite config.
+3. scaffold a simple README with run commands.
+
+Type the number of the option you want (1-3) or reply with another instruction.
