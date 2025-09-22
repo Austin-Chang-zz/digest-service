@@ -1,0 +1,321 @@
+#<DOCUMENT filename="MVP.yaml">
+mvp:
+  version: 0.97.3
+  scope: "Sprint 1 - MVP Core: Onboarding, Authentication, and Group Management"
+  description: >
+    This MVP focuses on essential user acquisition and setup functionality to validate core value proposition:
+    - Quick, secure account creation and family group formation
+    - Basic authentication with security fundamentals
+    - Initial group management and invitation system
+    Excludes advanced features like expense tracking, chat, or gamification to minimize scope while enabling user testing of onboarding flow.
+  business_goals:
+    - Achieve 95% onboarding completion rate in <3 minutes
+    - Support multi-language from day one for global validation
+    - Ensure secure, role-based access to build trust
+    - Collect early feedback on group setup experience
+  success_metrics:
+    - User acquisition: 100+ signups in beta
+    - Retention: 70% of groups add 2+ members within 24 hours
+    - Satisfaction: NPS >7 from initial users
+    - Technical: 99.9% uptime, no security incidents
+  constraints:
+    - Timeline: Complete in Sprint 1 (2-4 weeks)
+    - Resources: Core team (PM, Architect, 2 Devs, UX)
+    - Technical: Build on Next.js/NestJS/PostgreSQL stack per Architecture
+    - Scope: No bank integration or payments in MVP
+  risks:
+    - Authentication complexity delays rollout (mitigation: Use proven libraries like NextAuth)
+    - Multi-language implementation increases testing needs (mitigation: Focus on key languages, automate tests)
+    - User confusion in role assignment (mitigation: UX-guided flows with tooltips)
+  epics:
+    - id: 0
+      title: "Account Creation & Onboarding"
+      priority: High
+      stories:
+        - id: "0.1"
+          title: "Account Creation Page"
+          description: >
+            As a new family user, I want to create an account with my name, role, and group setup,
+            so that I can start managing my family’s finances.
+          priority: High
+          business_value: >
+            Smooth onboarding ensures first-time users engage successfully and set up their family group in under 3 minutes.
+          acceptance_criteria:
+            - Users can enter name, role (Parent, Partner, Teen, Child), and group name
+            - Setup completes in <3 minutes with 95% success on mobile
+            - Responsive across mobile, tablet, desktop
+            - Multi-language labels supported (EN, ZH-TW, ZH-CN, JA, ES)
+          technical_notes:
+            frontend: "Next.js AccountCreationForm.tsx"
+            backend: "NestJS Auth Service + Family Mgmt Service"
+            db: "users table with name, role, group_id"
+            integration: "Creates family group on signup"
+          references:
+            - "PRD v0.97.3 Epic 0.1"
+            - "UX Onboarding Flow"
+            - "Architecture Auth + Family Mgmt"
+        - id: "0.2"
+          title: "Host/Owner Definition"
+          description: >
+            As the group creator, I want to be automatically assigned as the group owner/admin
+            so that I can manage members, funds, and settings.
+          priority: High
+          business_value: >
+            Ensures clear ownership and administrative control at group creation.
+          acceptance_criteria:
+            - First user in group auto-assigned as Owner
+            - Owner has admin privileges (add/remove members, etc.)
+            - Visible in UI with clear indicators
+          technical_notes:
+            frontend: "OwnerAssignmentUI.tsx"
+            backend: "Family Mgmt Service auto-assigns role"
+            db: "groups table with owner_id"
+          references:
+            - "PRD v0.97.3 Epic 0.2"
+            - "Architecture Family Mgmt"
+        - id: "0.3"
+          title: "Add Members Placeholder"
+          description: >
+            As an owner, I want a clear placeholder for adding members during onboarding,
+            so that I know how to expand my family group later.
+          priority: Medium
+          business_value: >
+            Guides users toward core social features without overwhelming initial setup.
+          acceptance_criteria:
+            - "+ Add Member" button visible post-setup
+            - Links to invite generation
+            - Responsive and localized
+          technical_notes:
+            frontend: "AddMemberPlaceholder.tsx"
+            backend: "N/A (UI only)"
+          references:
+            - "PRD v0.97.3 Epic 0.3"
+            - "UX Onboarding Screen"
+        - id: "0.4"
+          title: "Current Member Display"
+          description: >
+            As an owner, I want to see joined members and confirm when all have joined,
+            so that I can track group completion.
+          priority: Medium
+          business_value: >
+            Provides visibility into group status during early adoption.
+          acceptance_criteria:
+            - List shows joined members with roles
+            - "All Joined" checkbox for owner
+            - Real-time updates on joins
+          technical_notes:
+            frontend: "MemberListUI.tsx with WebSocket for updates"
+            backend: "Family Mgmt Service"
+            db: "group_members table"
+          references:
+            - "PRD v0.97.3 Epic 0.4"
+            - "Architecture Real-time Services"
+        - id: "0.5"
+          title: "Multi-language Onboarding Labels"
+          description: >
+            As a global user, I want onboarding in my language,
+            so that I can easily understand and complete setup.
+          priority: High
+          business_value: >
+            Enables international adoption from MVP launch.
+          acceptance_criteria:
+            - All text localized (5 languages)
+            - Auto-detect browser language
+            - RTL support for applicable languages
+          technical_notes:
+            frontend: "next-i18next integration"
+            backend: "Locale in user profile"
+          references:
+            - "PRD v0.97.3 Epic 0.5"
+            - "UX Global UX"
+            - "Architecture i18n"
+        - id: "0.6"
+          title: "Responsive Onboarding Page"
+          description: >
+            As a mobile user, I want onboarding to work seamlessly on my device,
+            so that I can sign up anywhere.
+          priority: High
+          business_value: >
+            70%+ users expected on mobile; critical for accessibility.
+          acceptance_criteria:
+            - Fully responsive (mobile-first)
+            - Tested on iOS/Android/desktop
+            - 95% task completion on mobile
+          technical_notes:
+            frontend: "Tailwind CSS responsive classes"
+            testing: "BrowserStack emulation"
+          references:
+            - "PRD v0.97.3 Epic 0.6"
+            - "UX RWD"
+            - "Architecture Responsive Design"
+    - id: 1
+      title: "Authentication & Security"
+      priority: High
+      stories:
+        - id: "1.1"
+          title: "Signup & Login Flow"
+          description: >
+            As a user, I want secure signup and login,
+            so that I can access my account safely.
+          priority: High
+          business_value: >
+            Core security foundation; prevents unauthorized access.
+          acceptance_criteria:
+            - Email/password + social login (Google, etc.)
+            - Validation for strong passwords
+            - Session creation on success
+          technical_notes:
+            frontend: "AuthForm.tsx"
+            backend: "NestJS Auth Module with JWT"
+            db: "users table with hashed passwords"
+          references:
+            - "PRD v0.97.3 Epic 1.1-1.2"
+            - "Architecture Auth Service"
+        - id: "1.2"
+          title: "Password Reset & Recovery"
+          description: >
+            As a user, I want to reset my password,
+            so that I can recover access if forgotten.
+          priority: Medium
+          business_value: >
+            Reduces user drop-off from access issues.
+          acceptance_criteria:
+            - Email-based reset link
+            - Secure token expiry (30 min)
+            - Localized emails
+          technical_notes:
+            backend: "Email Service integration"
+            frontend: "ResetForm.tsx"
+          references:
+            - "PRD v0.97.3 Epic 1 (Security)"
+            - "Architecture Email Service"
+        - id: "1.3"
+          title: "Multi-Factor Authentication (MFA)"
+          description: >
+            As a user, I want optional MFA,
+            so that I can add extra security.
+          priority: Medium
+          business_value: >
+            Enhances trust for financial data.
+          acceptance_criteria:
+            - SMS/Email code verification
+            - Toggle in settings
+            - Required for owners
+          technical_notes:
+            backend: "Auth Service with OTP"
+            integration: "Twilio or similar for SMS"
+          references:
+            - "PRD v0.97.3 Epic 1.3"
+            - "Architecture Security"
+        - id: "1.4"
+          title: "Session Management"
+          description: >
+            As a user, I want automatic logout on inactivity,
+            so that my session remains secure.
+          priority: Medium
+          business_value: >
+            Prevents unauthorized access on shared devices.
+          acceptance_criteria:
+            - 30-min inactivity timeout
+            - Refresh tokens for long sessions
+            - Logout from all devices option
+          technical_notes:
+            backend: "JWT with refresh tokens"
+            frontend: "Idle timer hook"
+          references:
+            - "PRD v0.97.3 Epic 1 (Auth)"
+            - "Architecture Session Mgmt"
+    - id: 2
+      title: "Group Management & Invites"
+      priority: High
+      stories:
+        - id: "2.1"
+          title: "Group Summary Dashboard"
+          description: >
+            As a group member, I want a basic dashboard,
+            so that I can see group overview post-onboarding.
+          priority: High
+          business_value: >
+            Provides immediate value after signup.
+          acceptance_criteria:
+            - Shows members, basic stats
+            - Role-based views (limited for kids)
+            - Responsive and localized
+          technical_notes:
+            frontend: "GroupDashboard.tsx"
+            backend: "Family Mgmt Service"
+          references:
+            - "PRD v0.97.3 Epic 2.1"
+            - "UX Dashboard"
+            - "Architecture Dashboard Service"
+        - id: "2.2"
+          title: "Role-Based Permissions View"
+          description: >
+            As an owner, I want to assign and view roles,
+            so that I can control access appropriately.
+          priority: High
+          business_value: >
+            Ensures proper access control; critical for family dynamics.
+          acceptance_criteria:
+            - Roles: Owner, Parent, Partner, Teen, Child
+            - UI shows role assigned to each member
+            - Non-owners cannot reassign roles
+          technical_notes:
+            frontend: "RolePermissionsUI.tsx"
+            backend: "RBAC logic in Family Mgmt Service"
+            db: "user_roles table"
+          references:
+            - "PRD v0.97.3 Epic 2.2"
+            - "UX Persona Roles"
+        - id: "2.3"
+          title: "Family Progress Indicators"
+          description: >
+            As a parent, I want visual progress indicators,
+            so that I can track family financial goals and activity.
+          priority: Medium
+          business_value: >
+            Motivates engagement; placeholder for future goals.
+          acceptance_criteria:
+            - Basic progress bars (e.g., members joined)
+            - Updates in real-time
+            - Visible on dashboard
+          technical_notes:
+            frontend: "ProgressIndicators.tsx"
+            backend: "Basic metrics endpoint"
+          references:
+            - "PRD v0.97.3 Epic 2.3"
+            - "Architecture Metrics"
+        - id: "2.4"
+          title: "QR Code Invite"
+          description: >
+            As a group owner, I want to invite members via QR code,
+            so that they can quickly join my family group.
+          priority: High
+          business_value: >
+            Reduces friction in adding members; key to viral growth.
+          acceptance_criteria:
+            - Owner generates QR with secure link
+            - Scanning auto-fills join form
+            - Expiry and revocation options
+          technical_notes:
+            frontend: "QRCodeGenerator.tsx"
+            backend: "Invite Service with tokens"
+            db: "invites table"
+          references:
+            - "PRD v0.97.3 Epic 2.4"
+            - "UX Invite Flow"
+            - "Architecture Invite Service"
+  exclusions:
+    - Advanced features from later epics (e.g., expenses, chat, payments)
+    - Full gamification or notifications
+    - Bank sync or multi-currency
+    - Advanced personalization beyond basics
+  next_steps:
+    - Validate MVP with beta users
+    - Measure metrics and iterate
+    - Prepare for Sprint 2 (Localization & Personalization)
+  references:
+    - "PRD v0.97.3: Sprint 1 Scope"
+    - "Architecture v0.97.3: Core Services"
+    - "UX v0.97.3: Onboarding & Dashboard Flows"
+    - "Sprint1.yaml: Detailed Stories"
